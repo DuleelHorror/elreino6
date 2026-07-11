@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El Reino 6 — Un RPG con humor negro alrededor de una torre que da mal rollo</title>
+<meta name="description" content="El Reino 6 no es un survival normal: es un RPG de Minecraft con clases ridículas, magia con reagentes, misiones absurdas y una Torre Negra que zumba de noche. Gratis, sin premium y sin instalar nada. Próximamente.">
+<meta property="og:title" content="El Reino 6 — Próximamente">
+<meta property="og:description" content="Clases ridículas, magia, el negocio de la maría, cervezas artesanas, casino y una Torre Negra con un misterio detrás. Sin premium y sin instalar nada.">
+<meta property="og:type" content="website">
+<link rel="preload" href="assets/fonts/Monocraft-Bold.ttf" as="font" type="font/ttf" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- brasas de fondo -->
+<canvas id="embers" aria-hidden="true"></canvas>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top">EL&nbsp;REINO&nbsp;6</a>
+    <nav class="nav-links">
+      <a href="#que-es">El Reino</a>
+      <a href="#clases">Clases</a>
+      <a href="#vida">Qué hacer</a>
+      <a href="#torre">La Torre</a>
+      <a href="#noticias">Noticias</a>
+    </nav>
+    <span class="nav-soon">PRÓXIMAMENTE</span>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section id="top" class="hero">
+  <div class="hero-img" role="img" aria-label="La Torre Negra sobre el reino"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-in">
+    <div class="hero-badge">Servidor de Minecraft · Rol · Humor negro</div>
+    <h1 class="title">EL REINO<span class="six"> 6</span></h1>
+    <p class="tagline">Un mundo vivo y ridículo alrededor de una <b>Torre Negra</b> que nadie construyó… y que <b>zumba de noche</b>.</p>
+    <div class="hero-tags">
+      <span class="tag tag-on">GRATIS</span>
+      <span class="tag">SIN PREMIUM</span>
+      <span class="tag">SIN INSTALAR NADA</span>
+      <span class="tag tag-ver">Paper 1.21.8</span>
+    </div>
+    <a class="btn btn-big" href="#que-es">▼ Entra al Reino</a>
+    <p class="hero-note">Aún no ha abierto. Vuelve por aquí para las noticias y la fecha de apertura.</p>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">▼</div>
+</section>
+
+<!-- ===== ¿QUÉ ES? ===== -->
+<section id="que-es" class="band">
+  <div class="wrap reveal">
+    <div class="eyebrow">01 · Qué es esto</div>
+    <h2>No es un survival. Es un <span class="hl-arc">circo con rol</span>.</h2>
+    <p class="lead">El Reino 6 es un RPG completo montado sobre Minecraft: <b>clases con poderes</b>, <b>magia</b>, <b>misiones con historia</b> y <b>economía</b>, todo bañado en <b>humor absurdo y humor negro</b>. Un sitio donde asas enemigos con un chorizo volador, cultivas maría a escondidas de los científicos y una torre imposible marca el ritmo de todo.</p>
+
+    <div class="grid grid-2 fac">
+      <div class="block card fac-sci">
+        <div class="card-h"><span class="ic">🔬</span><h3>Los científicos (forasteros)</h3></div>
+        <p>Racionalistas de bata. Para ellos la Torre es <b>CIENCIA</b>: «los zumbidos son ondas electromagnéticas, no brujería». Miran al pueblo por encima del hombro… y no saben explicar por qué la Torre hace cosas raras.</p>
+      </div>
+      <div class="block card fac-folk">
+        <div class="card-h"><span class="ic">🪄</span><h3>El pueblo (autóctonos)</h3></div>
+        <p>Nunca salieron de aquí. Para ellos <b>la magia es lo más normal del mundo</b> y la Torre «siempre estuvo y da suerte». Están hasta el gorro de los de bata y su jaleo de excavaciones y becarios perdidos.</p>
+      </div>
+    </div>
+    <p class="foot-note">Toda la comedia nace de ese <b>choque</b>. Y en medio, los obreros — como <b>Toni</b>, un carpincho uruguayo con más curiosidades de capibara que ganas de currar.</p>
+  </div>
+</section>
+
+<!-- ===== CLASES ===== -->
+<section id="clases" class="band alt">
+  <div class="wrap reveal">
+    <div class="eyebrow">02 · Elige tu ridiculez</div>
+    <h2>5 clases jugables. Por fuera, un chiste. <span class="hl-arc">Por dentro, el arquetipo RPG de siempre.</span></h2>
+    <p class="lead">Cada clase tiene <b>4 hechizos propios</b> (nada compartido), su recurso y su rollo. Se castea pulsando <span class="kbd">F</span> y luego el número del poder.</p>
+
+    <div class="grid grid-3 clases">
+      <div class="block class c-fun">
+        <div class="class-ic">🗂️</div>
+        <h3>El Funcionario</h3>
+        <div class="class-role">Guerrero / Tanque · <span class="diff">Fácil</span></div>
+        <p>El que no se muere ni queriendo. Papeleo que paraliza, escudos de ventanilla y un <b>Sellazo Oficial</b> que hace pupa.</p>
+      </div>
+      <div class="block class c-loco">
+        <div class="class-ic">🤪</div>
+        <h3>El Loco</h3>
+        <div class="class-role">Bárbaro · <span class="diff">Media</span></div>
+        <p>Cuanta <b>menos vida, más daño</b>. Inmune al miedo. Pega primero y piensa nunca. Fiesta Sangrienta incluida.</p>
+      </div>
+      <div class="block class c-parr">
+        <div class="class-ic">🔥</div>
+        <h3>El Parrillero</h3>
+        <div class="class-role">Mago de fuego · <span class="diff">Media</span></div>
+        <p>Asa enemigos al mejor estilo asador. <b>Chorizo Volador</b>, Meteoro de Choripán… y usa reagentes de alquimia.</p>
+      </div>
+      <div class="block class c-abu">
+        <div class="class-ic">🧅</div>
+        <h3>El Abuelo Cebolleta</h3>
+        <div class="class-role">Arquero / Tirador · <span class="diff">Fácil-media</span></div>
+        <p>El cascarrabias que no falla un tiro. «En mis tiempos…», Cadera de Titanio y <b>Escopetazo</b> desde lejos.</p>
+      </div>
+      <div class="block class c-yog">
+        <div class="class-ic">🍓</div>
+        <h3>El Yogur de Fresa</h3>
+        <div class="class-role">Sanador · <span class="diff">Difícil</span></div>
+        <p>Magia <b>probiótica</b>: cura y regenera al grupo con Cucharada de Yogur y Tarrina Familiar. La más difícil de dominar.</p>
+      </div>
+      <div class="block class c-more">
+        <div class="class-ic">➕</div>
+        <h3>Y vienen más…</h3>
+        <div class="class-role">7 clases reservadas</div>
+        <p>El Político, El Cuñao, El Reguetonero (perrea para aturdir), El Loco de los Gatos… Se irán soltando como «clase del mes».</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAGIA & COMBATE ===== -->
+<section id="magia" class="band">
+  <div class="wrap reveal">
+    <div class="eyebrow">03 · Magia &amp; combate</div>
+    <h2>Hechizos que <span class="hl-ember">gastan ingredientes</span>, como en los viejos MMO.</h2>
+    <div class="grid grid-2 split">
+      <div>
+        <p class="lead">La magia funciona <b>al estilo Ultima Online</b>: cada hechizo <b>consume reagentes</b> al lanzarlo. Sin ajo, sin perla negra, sin ceniza sulfurosa… no hay magia. Si te falta algo, el juego te dice <b>cuál</b>.</p>
+        <ul class="ticks">
+          <li>Barra de poderes con <span class="kbd">F</span> + número.</li>
+          <li>8 reagentes clásicos: 🧄 Ajo · 🌑 Belladona · 🌋 Ceniza Sulfurosa · 🌿 Ginseng · 🩸 Musgo de Sangre · ⚫ Perla Negra · 🌱 Raíz de Mandrágora · 🕸️ Seda de Araña.</li>
+          <li>Solo las clases mágicas gastan reagentes. Un tanque con ajo no tiene sentido.</li>
+        </ul>
+      </div>
+      <div class="block card recipe">
+        <div class="card-h"><span class="ic">🔥</span><h3>Receta real: Asado Apocalíptico</h3></div>
+        <div class="recipe-row"><span>Musgo de Sangre</span><span>Raíz de Mandrágora</span><span>Ceniza Sulfurosa</span><span>Seda de Araña</span></div>
+        <p class="recipe-note">= una lluvia de fuego con nombre de sobremesa. Los reagentes se compran en la Botica de la bruja del pueblo.</p>
+        <div class="death">
+          <b>☠ Muerte con «Resaca»:</b> al morir pierdes un pellizco del nivel (nunca bajas de nivel) pero <b>conservas todo el inventario</b>, y te quedas unos minutos temblando y con náuseas. Morir enseña, no arruina.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GÁNATE LA VIDA (economía + sinergias) ===== -->
+<section id="vida" class="band alt">
+  <div class="wrap reveal">
+    <div class="eyebrow">04 · Gánate la vida</div>
+    <h2>Mil formas de sacar 🥜, y <span class="hl-arc">todas conectan entre sí</span>.</h2>
+    <p class="lead">La moneda es el <b>Cacahuate 🥜</b>. Puedes ganártela como quieras — y lo que ganas alimenta otras cosas. Esto no es picar piedra sin más.</p>
+
+    <div class="grid grid-3 feats">
+      <div class="block feat"><div class="feat-ic">🌿</div><h3>El negocio de la maría</h3><p>Cultiva, seca y cocina marihuana a escondidas de los científicos. La <b>Alquimista</b> (una viciada perdida) te la compra; <b>Nando</b>, un camello que habla como un poeta desde su cueva inmunda, te pasa las semillas.</p></div>
+      <div class="block feat"><div class="feat-ic">🍺</div><h3>Cervezas artesanas</h3><p>El <b>Señor Trapo</b>, un cerdo con mostacho falso, te enseña a fermentar, destilar, añejar y servir tu propia birra en la bodega de su barco volcado. Con borrachera de verdad (andar haciendo eses).</p></div>
+      <div class="block feat"><div class="feat-ic">🛠️</div><h3>5 oficios</h3><p>Minero, Leñador, Hortelano, Cazador y Pescador pagan por currar. Pero solo puedes llevar <b>3 a la vez</b> y cambiar cuesta: el juego te obliga a <b>especializarte</b>, no a exprimirlo todo.</p></div>
+      <div class="block feat"><div class="feat-ic">🎰</div><h3>Casino &amp; cofres</h3><p>Un <b>casino</b> con minijuegos y una familia de <b>cofres con animación</b> (estilo CSGO): Capincherío, Bronce, de Votación, de Invasión… De dónde sale la llave define lo que te toca.</p></div>
+      <div class="block feat"><div class="feat-ic">🎟️</div><h3>Tablón de Encargos</h3><p><b>Misiones diarias</b> aleatorias (matar, minar, talar, pescar…). Suben tu <b>Pase del Reino</b> y sueltan <b>Fichas 🎟️</b>, una moneda aparte que solo se gasta en su tienda. El motivo para volver cada día.</p></div>
+      <div class="block feat feat-syn"><div class="feat-ic">🔗</div><h3>Todo enchufa con todo</h3><p>María → Cacahuates → gear. Oficios → sueldo diario. Diarias → Fichas → casino. Magia → reagentes de la Alquimista. Jefes y sagas → el gear legendario (ese <b>no se compra</b>). Cinco vías de progreso a la vez.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LA TORRE ===== -->
+<section id="torre" class="band torre">
+  <div class="wrap reveal">
+    <div class="eyebrow">05 · El misterio</div>
+    <h2 class="torre-h">La <span class="hl-ember">Torre Negra</span></h2>
+    <p class="lead big">Piedra negra que no refleja la luz. Sin puerta ni ventana. Más vieja que el propio Reino. Y de noche… <b>zumba</b>.</p>
+    <p>Nadie sabe quién la levantó ni por qué. El Reino cava minas hacia su base y el misterio se destapa por fases: un fondo sin fin, marcas grabadas ilegibles… y una <b>puerta sellada</b>. Cada cierto tiempo la Torre <b>pulsa</b>, y por las grietas entre universos salen <b>Ecos del Multiverso</b> — sombras de otros Reinos que hay que frenar entre todos.</p>
+    <blockquote class="quote block">
+      «La Torre no nació aquí, muchacho. Nació cuando rompisteis lo que no sabíais nombrar. También he visto un pato con sombrero. Las dos cosas son verdad.»
+      <cite>— Rancio el Profeta, un jugador caído del Reino 1</cite>
+    </blockquote>
+    <p class="foot-note">Porque sí: <b>El Reino 6 es el sexto servidor</b>. Otro universo. Y alguien del primero anda por aquí, tirado junto a la fuente, soltando verdades que todos toman por delirios.</p>
+  </div>
+</section>
+
+<!-- ===== EL REPARTO ===== -->
+<section id="reparto" class="band alt">
+  <div class="wrap reveal">
+    <div class="eyebrow">06 · El reparto</div>
+    <h2>Un pueblo lleno de <span class="hl-arc">gente que no está bien</span>.</h2>
+    <div class="grid grid-4 cast">
+      <div class="block npc"><span class="npc-ic">🦫</span><b>Toni</b><span>Capataz carpincho uruguayo</span></div>
+      <div class="block npc"><span class="npc-ic">💅</span><b>Maestro Anselmo</b><span>RRHH; niega la magia: «es termodinámica»</span></div>
+      <div class="block npc"><span class="npc-ic">🏹</span><b>Semental de la Flecha</b><span>Arquero salido y entrañable</span></div>
+      <div class="block npc"><span class="npc-ic">🌸</span><b>La Alquimista</b><span>Maga, camella y viciada perdida</span></div>
+      <div class="block npc"><span class="npc-ic">🕳️</span><b>Nando</b><span>Camello de cueva que habla como un poeta</span></div>
+      <div class="block npc"><span class="npc-ic">🐷</span><b>Señor Trapo</b><span>Tabernero con pasado «oscuro»</span></div>
+      <div class="block npc"><span class="npc-ic">🪨</span><b>Doctora Pizarrica</b><span>Geóloga que odia cada piedra</span></div>
+      <div class="block npc"><span class="npc-ic">🌀</span><b>Rancio el Profeta</b><span>El loco que no está tan loco</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INMERSIVO / CÓMO SE JUEGA ===== -->
+<section id="comodo" class="band">
+  <div class="wrap reveal">
+    <div class="eyebrow">07 · Cómo se juega</div>
+    <h2>Cómodo, elegante y <span class="hl-ember">sin líos</span>.</h2>
+    <div class="grid grid-3 feats">
+      <div class="block feat"><div class="feat-ic">💬</div><h3>Diálogos en pantalla</h3><p>Los NPCs hablan en una <b>caja a pantalla completa</b>, no por el chat. El lore no se pierde aunque haya gente hablando. Función nativa de Minecraft: sin mods.</p></div>
+      <div class="block feat"><div class="feat-ic">🧭</div><h3>Nada de teclear comandos</h3><p>Cada acción es un <b>objeto chulo</b>: un diario para tus misiones, un contrato para elegir clase, una brújula mágica que solo tú ves. Cero comandos.</p></div>
+      <div class="block feat"><div class="feat-ic">🎓</div><h3>Onboarding progresivo</h3><p>Aprendes <b>una cosa cada vez</b>, sin agobios. Cada mecánica te la enseña un personaje y te la desbloquea al acabar su misión.</p></div>
+    </div>
+
+    <div class="block join reveal">
+      <h3>¿Qué necesitas para entrar?</h3>
+      <p class="join-big"><b>Nada.</b> El Reino 6 se juega <b>sin cuenta premium</b> y <b>sin instalar nada</b>.</p>
+      <p>Con el Minecraft normal y corriente ya entras. Solo si quieres el <b>chat de voz por proximidad</b> harás dos descargas opcionales — y te dejaremos el tutorial y los archivos listos. Sin premium, sin 458 mods, sin dramas.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NOTICIAS ===== -->
+<section id="noticias" class="band alt">
+  <div class="wrap reveal">
+    <div class="eyebrow">08 · Noticias</div>
+    <h2>Lo último del <span class="hl-arc">Reino</span></h2>
+    <p class="lead">Aquí iremos contando novedades, sagas nuevas y la <b>fecha de apertura</b> en cuanto la tengamos.</p>
+    <div id="noticias-list" class="news">
+      <noscript><div class="block news-item"><div class="news-meta">Muy pronto</div><h3>El Reino 6 está en camino</h3><p>Estamos dándole los últimos retoques. Vuelve por aquí para enterarte de todo.</p></div></noscript>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">EL REINO 6</div>
+        <p class="foot-desc">Un RPG con humor negro alrededor de una torre que da mal rollo. Minecraft Java · Paper 1.21.8.</p>
+      </div>
+      <div class="foot-links">
+        <span class="foot-title">Enlaces</span>
+        <a href="https://duleelhorror.github.io/elreino6-map/" target="_blank" rel="noopener">🗺️ Mapa del mundo</a>
+        <a class="soon" href="#">💬 Discord — próximamente</a>
+        <a class="soon" href="#">📺 Tráiler — próximamente</a>
+      </div>
+      <div class="foot-links">
+        <span class="foot-title">Estado</span>
+        <span class="foot-soon">🔨 En construcción</span>
+        <span class="foot-mut">Sin premium · sin instalar nada</span>
+        <span class="foot-mut">Apertura: muy pronto</span>
+      </div>
+    </div>
+    <div class="foot-bottom">El Reino 6 · hecho con cariño y humor negro · no afiliado a Mojang.</div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+<script src="js/noticias.js" defer></script>
+</body>
+</html>
