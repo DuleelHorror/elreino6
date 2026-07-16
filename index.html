@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>El Reino 6 — Un RPG con humor negro alrededor de una torre que da mal rollo</title>
-<meta name="description" content="El Reino 6 no es un survival normal: es un RPG de Minecraft con clases ridículas, magia con reagentes, misiones absurdas y una Torre Negra que zumba de noche. Gratis, sin premium y sin instalar nada. Próximamente.">
-<meta property="og:title" content="El Reino 6 — Próximamente">
-<meta property="og:description" content="Clases ridículas, magia, el negocio de la maría, cervezas artesanas, casino y una Torre Negra con un misterio detrás. Sin premium y sin instalar nada.">
+<title>Oh No! More Reinos — El Reino 6 · RPG de Minecraft con humor negro</title>
+<meta name="description" content="Oh No! More Reinos (El Reino 6): un RPG de Minecraft con clases ridículas, magia con reagentes, mascotas que suben de nivel, mazmorras en grupo, el negocio de la maría, cervezas artesanas y una Torre Negra que zumba de noche. Gratis, sin premium y sin instalar nada. Próximamente.">
+<meta property="og:title" content="Oh No! More Reinos — El Reino 6 · Próximamente">
+<meta property="og:description" content="Clases ridículas, magia, mascotas útiles, mazmorras en grupo, el negocio de la maría, cervezas, casino y una Torre Negra con un misterio detrás. Sin premium y sin instalar nada.">
 <meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%97%BC%3C/text%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/Monocraft-Bold.ttf" as="font" type="font/ttf" crossorigin>
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -19,13 +20,19 @@
 <!-- ===== NAV ===== -->
 <header class="nav">
   <div class="nav-in">
-    <a class="brand" href="#top">EL&nbsp;REINO&nbsp;6</a>
-    <nav class="nav-links">
+    <a class="brand" href="#top"><span class="brand-oh">OH&nbsp;NO!</span> MORE&nbsp;REINOS</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+      <span class="nav-burger"></span>
+    </button>
+    <nav class="nav-links" id="navLinks">
       <a href="#que-es">El Reino</a>
       <a href="#torre">La Torre</a>
       <a href="#clases">Clases</a>
-      <a href="#vida">Qué hacer</a>
+      <a href="#vida">Gánate la vida</a>
       <a href="#tablon">Tablón</a>
+      <a href="#mascotas">Mascotas</a>
+      <a href="#mazmorras">Mazmorras</a>
+      <a href="#todo">Todo</a>
       <a href="#noticias">Noticias</a>
     </nav>
     <span class="nav-soon">PRÓXIMAMENTE</span>
@@ -38,7 +45,9 @@
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-in">
     <div class="hero-badge">Servidor de Minecraft · Rol · Humor negro</div>
-    <h1 class="title">EL REINO<span class="six"> 6</span></h1>
+    <h1 class="wordmark"><span class="wm-oh">OH&nbsp;NO!</span><span class="wm-more">MORE&nbsp;REINOS</span></h1>
+    <div class="subbrand">El Reino <span class="six">6</span></div>
+    <p class="joke">El sexto servidor que montamos. Los cinco anteriores, por lo visto, no fueron aviso suficiente.</p>
     <p class="tagline">Un mundo vivo y ridículo alrededor de una <b>Torre Negra</b> que nadie construyó, no tiene puerta y por las noches <b>zumba</b>. Todo dentro de la normalidad local.</p>
     <div class="hero-tags">
       <span class="tag tag-on">GRATIS</span>
@@ -176,7 +185,7 @@
       <div class="block feat"><div class="feat-ic">🌿</div><h3>El negocio de la maría</h3><p>Cultiva, seca y cocina marihuana a escondidas de los científicos. La <b>Alquimista</b>, una viciada perdida con negocio propio, te compra el producto. <b>Nando</b>, un camello que habla como un poeta desde una cueva inmunda, pone las semillas.</p></div>
       <div class="block feat"><div class="feat-ic">🍺</div><h3>Cervezas artesanas</h3><p>El <b>Señor Trapo</b>, un cerdo con mostacho falso, te enseña a fermentar, destilar, añejar y servir tu propia cerveza en la bodega de su barco volcado. La borrachera es real: acabas andando en eses, que es la forma tradicional de comprobar la calidad.</p></div>
       <div class="block feat"><div class="feat-ic">🛠️</div><h3>5 oficios</h3><p>Minero, Leñador, Hortelano, Cazador y Pescador pagan por trabajar. Solo puedes llevar <b>tres a la vez</b> y cambiarlos cuesta dinero, así que toca especializarse en lugar de ordeñar todos los sistemas hasta dejarlos secos.</p></div>
-      <div class="block feat"><div class="feat-ic">🎰</div><h3>Casino &amp; cofres</h3><p>El casino tiene minijuegos y una familia de <b>cofres con animación</b> al estilo CSGO: Capincherío, Bronce, de Votación, de Invasión y más. El origen de la llave determina lo que puede tocarte. El azar conserva sus propias normas, por algún motivo.</p></div>
+      <div class="block feat"><div class="feat-ic">🏦</div><h3>El Banco y la Bolsa</h3><p>Abres cuenta pagando comisiones cada vez más creativas y desbloqueas <b>La Bolsa del Reino</b>: un mercado con precios que suben y bajan solos, con sus cracks y sus subidones anunciados. Comprar barato y vender caro, pero con el Reino apostando en tu contra.</p></div>
       <div class="block feat feat-syn"><div class="feat-ic">🔗</div><h3>Todo enchufa con todo</h3><p>María → Cacahuates → equipo. Oficios → sueldo diario. Encargos diarios → Fichas → casino. Magia → reagentes de la Alquimista. Jefes y sagas → equipo legendario, que <b>no se compra</b>. Cinco vías de progreso para que siempre haya algo útil que hacer.</p></div>
     </div>
     <p class="foot-note">Y cada día, el <b>Tablón de Encargos</b> reparte trabajo nuevo. Porque el Reino podrá ser absurdo, pero jamás permitirá que te falten obligaciones. <a href="#tablon">Bájate al Tablón ▼</a></p>
@@ -201,10 +210,156 @@
   </div>
 </section>
 
+<!-- ===== MASCOTAS (EcoPets) ===== -->
+<section id="mascotas" class="band alt">
+  <div class="wrap reveal">
+    <div class="eyebrow">07 · Mascotas <span class="badge badge-soon">En camino</span></div>
+    <h2>Una mascota que sube de nivel y, por una vez, <span class="hl-arc">sirve para algo</span>.</h2>
+    <p class="lead">No es un adorno que da vueltas a tu alrededor pidiendo atención. Te sigue, gana experiencia contigo y, según sube de nivel, te va soltando <b>ventajas de verdad</b>. Empieza siendo poca cosa. Termina siendo el motivo por el que sales vivo de la mina.</p>
+
+    <div class="grid grid-3 feats">
+      <div class="block feat"><div class="feat-ic">📈</div><h3>Sube de nivel contigo</h3><p>Cuanto más juegas con ella, más fuerte se hace. La mascota tiene su propia progresión: la subes, la mejoras y la conviertes en algo a lo que tenerle cariño y respeto a partes iguales.</p></div>
+      <div class="block feat"><div class="feat-ic">💪</div><h3>Te da ventajas reales</h3><p>No es cosmética: mejora al <b>jugador</b>. Más daño, más aguante, más suerte con el botín, algo de regeneración… según la mascota y su nivel. Ventajas que se notan, no confeti.</p></div>
+      <div class="block feat"><div class="feat-ic">🐾</div><h3>No es un sombrero con patas</h3><p>Cosméticos habrá aparte, y para presumir. Esto es otra cosa: una compañera que decides subir porque te <b>compensa</b> llevarla, no solo porque queda mona en las capturas.</p></div>
+    </div>
+    <p class="foot-note">Empieza inútil y decorativa. Sube de nivel y, de repente, te está salvando la vida. Es un arco de personaje más largo que el de mucha gente del pueblo.</p>
+  </div>
+</section>
+
+<!-- ===== MAZMORRAS ===== -->
+<section id="mazmorras" class="band">
+  <div class="wrap reveal">
+    <div class="eyebrow">08 · Mazmorras en grupo <span class="badge badge-far">En el horizonte</span></div>
+    <h2>Bajáis en cuadrilla. <span class="hl-ember">Cada grupo, su propia copia.</span></h2>
+    <p class="lead">Zonas de aventura hechas a mano —pasillos, salas y una arena de jefe— para bajar <b>con tus colegas</b>. Lo de «instanceada» significa que <b>cada grupo juega su propia versión</b>: si entráis vosotros y luego otros, cada party tiene la suya, sin veros ni pisaros. Al terminar, la copia se borra sola.</p>
+
+    <div class="grid grid-4 steps">
+      <div class="block step-c"><div class="step-n">1</div><h3>Junta tu party</h3><p>Reúnes al grupo de amigos con los que vas a bajar.</p></div>
+      <div class="block step-c"><div class="step-n">2</div><h3>Cruza la puerta</h3><p>La entrada se abre con un clic —cero comandos— y os teletransporta dentro.</p></div>
+      <div class="block step-c"><div class="step-n">3</div><h3>Oleadas + jefe</h3><p>Bichos que salen por tandas, cofres por el camino y un jefe al final.</p></div>
+      <div class="block step-c"><div class="step-n">4</div><h3>Botín y salida</h3><p>Repartís el botín y la instancia se limpia sola. Otra vez cuando queráis.</p></div>
+    </div>
+
+    <div class="block card recipe" style="margin-top:16px">
+      <div class="card-h"><span class="ic">🕯️</span><h3>La primera: Las Catacumbas de la Iglesia</h3></div>
+      <p class="recipe-note">Bajo la iglesia hay una cripta que nadie debería pisar: no-muertos, faroles de alma, ventanales morados y humedad de la mala. Al fondo espera <b>El Padre Podrido</b>, un antiguo cura de la parroquia que no llevó del todo bien lo de descansar en paz. La iglesia prohíbe bajar. Vosotros bajaréis igual.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MUNDO VIVO ===== -->
+<section id="mundo" class="band alt">
+  <div class="wrap reveal">
+    <div class="eyebrow">09 · El mundo se mueve</div>
+    <h2>El Reino <span class="hl-arc">no te espera quieto</span>.</h2>
+    <p class="lead">Mientras tú haces tus cosas, el mundo hace las suyas. Cambia de estación, monta eventos sin avisar demasiado, protege tus construcciones y —cuando la palmas— procura no arruinarte la tarde.</p>
+
+    <div class="grid grid-3 feats">
+      <div class="block feat"><div class="feat-ic">🌪️</div><h3>Eventos de mundo</h3><p>Cada tanto salta algo con aviso previo: <b>fiebre del oro</b>, <b>noche de horda</b>, doble botín, expedición minera, abundancia de hierro… Buffs y retos que duran un rato. Si ibas a currar, mira el aviso: igual es tu día.</p></div>
+      <div class="block feat"><div class="feat-ic">🍂</div><h3>Las cuatro estaciones</h3><p>Primavera, verano, otoño e invierno, con su clima, sus colores y sus bichos de temporada. Zorros y lobos cuando aprieta el frío; ranas y luciérnagas cuando afloja.</p></div>
+      <div class="block feat"><div class="feat-ic">⚰️</div><h3>La muerte no te arruina</h3><p>Al morir dejas una <b>tumba</b> con tus cosas donde caíste y una brújula que te lleva de vuelta. Y lo que de verdad te importa lo puedes <b>ASEGURAR</b>: no lo pierdes ni muerto. Objetos de misión y libros, a salvo siempre.</p></div>
+      <div class="block feat"><div class="feat-ic">🔒</div><h3>Candados de cofres</h3><p>Pones un cartel en un cofre y queda cerrado con tu nombre. Se acabó lo de confiar en la buena fe de gente que juega a un server de humor negro.</p></div>
+      <div class="block feat"><div class="feat-ic">🌳</div><h3>Los árboles rebrotan</h3><p>Talas el tronco entero de un hachazo y brota uno nuevo. Recoges madera rápido sin dejar el bosque hecho un solar.</p></div>
+      <div class="block feat"><div class="feat-ic">⚔️</div><h3>PvP solo en el salvaje</h3><p>En el pueblo y las zonas habitadas <b>nadie te puede matar</b>. Las peleas entre jugadores solo cuentan fuera. Y los creepers ya no te tiran la casa.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TODO LO QUE PUEDES HACER (menú completo) ===== -->
+<section id="todo" class="band">
+  <div class="wrap reveal">
+    <div class="eyebrow">10 · El menú completo</div>
+    <h2>Todo lo que puedes hacer en el Reino.</h2>
+    <p class="lead">Un vistazo a TODO de golpe: lo que ya está montado, lo que llega pronto y lo que asoma en el horizonte. Sí, es mucho. Ese es el problema.</p>
+    <div class="legend">
+      <span class="badge badge-ok">Listo</span> ya construido y probado ·
+      <span class="badge badge-soon">En camino</span> montándose ahora mismo ·
+      <span class="badge badge-far">En el horizonte</span> en el plan
+    </div>
+
+    <div class="grid grid-2 menu">
+      <div class="block menu-cat">
+        <h3>⚔️ Rol, combate y progreso</h3>
+        <ul>
+          <li>5 clases con 4 poderes propios cada una <span class="badge badge-ok">Listo</span></li>
+          <li>Magia con reagentes al estilo Ultima Online <span class="badge badge-ok">Listo</span></li>
+          <li>7 atributos + árbol de talentos <span class="badge badge-ok">Listo</span></li>
+          <li>Equipo ridículo por rarezas (de chatarra a legendario) <span class="badge badge-ok">Listo</span></li>
+          <li>Niveles del 1 al 100 con curva de las duras <span class="badge badge-ok">Listo</span></li>
+          <li>Mascotas que suben de nivel y te dan ventajas <span class="badge badge-soon">En camino</span></li>
+          <li>Más clases como «clase del mes» <span class="badge badge-far">En el horizonte</span></li>
+          <li>Equipo legendario y mítico, solo de jefes y sagas <span class="badge badge-far">En el horizonte</span></li>
+        </ul>
+      </div>
+      <div class="block menu-cat">
+        <h3>🥜 Dinero y negocios</h3>
+        <ul>
+          <li>El Cacahuate, la moneda del Reino <span class="badge badge-ok">Listo</span></li>
+          <li>5 oficios que pagan por currar <span class="badge badge-ok">Listo</span></li>
+          <li>El negocio (ilegal) de la maría <span class="badge badge-ok">Listo</span></li>
+          <li>El Banco y sus comisiones creativas <span class="badge badge-ok">Listo</span></li>
+          <li>La Bolsa: mercado con precios que suben y bajan <span class="badge badge-ok">Listo</span></li>
+          <li>Tiendas del pueblo y mercadillo <span class="badge badge-ok">Listo</span></li>
+          <li>Cervezas artesanas con borrachera de verdad <span class="badge badge-soon">En camino</span></li>
+          <li>Casa de subastas entre jugadores <span class="badge badge-soon">En camino</span></li>
+          <li>Tiendas montadas por jugadores <span class="badge badge-far">En el horizonte</span></li>
+        </ul>
+      </div>
+      <div class="block menu-cat">
+        <h3>🎲 Cada día y azar</h3>
+        <ul>
+          <li>Cofres con animación (Capincherío, Bronce…) <span class="badge badge-ok">Listo</span></li>
+          <li>Tablón de Encargos + Pase del Reino + Fichas <span class="badge badge-soon">En camino</span></li>
+          <li>Cofre de la Suerte, con las Fichas <span class="badge badge-soon">En camino</span></li>
+          <li>Casino con minijuegos <span class="badge badge-soon">En camino</span></li>
+          <li>Cofre de Votación (por votar el server) <span class="badge badge-soon">En camino</span></li>
+        </ul>
+      </div>
+      <div class="block menu-cat">
+        <h3>🌍 El mundo</h3>
+        <ul>
+          <li>Eventos de mundo (fiebre del oro, noche de horda…) <span class="badge badge-ok">Listo</span></li>
+          <li>Muerte amable: tumba + asegurar tus objetos <span class="badge badge-ok">Listo</span></li>
+          <li>Candados de cofres <span class="badge badge-ok">Listo</span></li>
+          <li>Árboles que se replantan solos <span class="badge badge-ok">Listo</span></li>
+          <li>PvP solo en el salvaje <span class="badge badge-ok">Listo</span></li>
+          <li>Megáfono del pueblo y mapa web del mundo <span class="badge badge-ok">Listo</span></li>
+          <li>Las cuatro estaciones del año <span class="badge badge-soon">En camino</span></li>
+          <li>Viaje rápido por «esquejes de la Torre» <span class="badge badge-soon">En camino</span></li>
+          <li>Mazmorras en grupo <span class="badge badge-far">En el horizonte</span></li>
+          <li>Invasión de la Torre: oleadas + jefe <span class="badge badge-far">En el horizonte</span></li>
+        </ul>
+      </div>
+      <div class="block menu-cat">
+        <h3>🤝 Vida social (y golfa)</h3>
+        <ul>
+          <li>Bodas entre jugadores, con el cura del pueblo <span class="badge badge-soon">En camino</span></li>
+          <li>Cosméticos: sombreros, partículas, monturas <span class="badge badge-soon">En camino</span></li>
+          <li>Cazarrecompensas: pon precio a una cabeza <span class="badge badge-soon">En camino</span></li>
+          <li>Carterismo: robar por la espalda (con su saga) <span class="badge badge-soon">En camino</span></li>
+          <li>Pesca con torneos, con el Bacalao del puerto <span class="badge badge-soon">En camino</span></li>
+        </ul>
+      </div>
+      <div class="block menu-cat">
+        <h3>🎮 Comodidad</h3>
+        <ul>
+          <li>Diálogos en caja a pantalla completa (sin chat) <span class="badge badge-ok">Listo</span></li>
+          <li>Cero comandos: todo por objetos chulos <span class="badge badge-ok">Listo</span></li>
+          <li>Te sientas con un clic; la antorcha te alumbra <span class="badge badge-ok">Listo</span></li>
+          <li>Armas de fuego personalizadas <span class="badge badge-ok">Listo</span></li>
+          <li>Portales para viajar entre mundos <span class="badge badge-ok">Listo</span></li>
+          <li>Chat de voz por proximidad (opcional) <span class="badge badge-soon">En camino</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="foot-note">Y lo que no está en esta lista es porque contarlo sería destriparte la Torre. Algunas cosas mejor las descubres tú.</p>
+  </div>
+</section>
+
 <!-- ===== EL REPARTO ===== -->
 <section id="reparto" class="band alt">
   <div class="wrap reveal">
-    <div class="eyebrow">07 · El reparto</div>
+    <div class="eyebrow">11 · El reparto</div>
     <h2>Un pueblo lleno de gente que, <span class="hl-arc">técnicamente, funciona</span>.</h2>
     <div class="grid grid-4 cast">
       <div class="block npc"><span class="npc-ic">🦫</span><b>Toni</b><span>Capataz carpincho uruguayo, con más curiosidades sobre capibaras que ganas de atender una obra urgente.</span></div>
@@ -223,7 +378,7 @@
 <!-- ===== INMERSIVO / CÓMO SE JUEGA ===== -->
 <section id="comodo" class="band">
   <div class="wrap reveal">
-    <div class="eyebrow">08 · Cómo se juega</div>
+    <div class="eyebrow">12 · Cómo se juega</div>
     <h2>Cómodo, claro y <span class="hl-ember">sin pelearte con un manual de cuarenta páginas</span>.</h2>
     <div class="grid grid-3 feats">
       <div class="block feat"><div class="feat-ic">💬</div><h3>Diálogos en pantalla</h3><p>Los NPC hablan mediante una <b>caja a pantalla completa</b>, no por el chat. Así puedes leer el lore aunque otras personas mantengan una conversación crucial sobre patatas. Es una función nativa de Minecraft y no necesita mods.</p></div>
@@ -242,7 +397,7 @@
 <!-- ===== NOTICIAS ===== -->
 <section id="noticias" class="band alt">
   <div class="wrap reveal">
-    <div class="eyebrow">09 · Noticias</div>
+    <div class="eyebrow">13 · Noticias</div>
     <h2>Lo último del <span class="hl-arc">Reino</span></h2>
     <p class="lead">Aquí publicaremos las novedades, las nuevas sagas y la fecha de apertura en cuanto la tengamos. Hasta entonces, esta sección cumplirá la noble función de alimentar la impaciencia.</p>
     <div id="noticias-list" class="news">
@@ -256,8 +411,8 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="foot-brand">EL REINO 6</div>
-        <p class="foot-desc">Un RPG con humor negro alrededor de una Torre Negra que da muy mal rollo. Minecraft Java · Paper 1.21.8.</p>
+        <div class="foot-brand">OH NO! MORE REINOS</div>
+        <p class="foot-desc">El Reino 6 · un RPG con humor negro alrededor de una Torre Negra que da muy mal rollo. Minecraft Java · Paper 1.21.8.</p>
       </div>
       <div class="foot-links">
         <span class="foot-title">Enlaces</span>
@@ -272,7 +427,7 @@
         <span class="foot-mut">Apertura: muy pronto</span>
       </div>
     </div>
-    <div class="foot-bottom">El Reino 6 · hecho con cariño y humor negro · no afiliado a Mojang.</div>
+    <div class="foot-bottom">Oh No! More Reinos (El Reino 6) · hecho con cariño y humor negro · no afiliado a Mojang.</div>
   </div>
 </footer>
 

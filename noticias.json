@@ -1,5 +1,12 @@
 [
   {
+    "orden": 2,
+    "fecha": "Julio 2026",
+    "etiqueta": "En camino",
+    "titulo": "Mascotas, mazmorras y el Tablón de Encargos",
+    "cuerpo": "Se vienen cosas. Mascotas que suben de nivel y sirven de algo (no adornos), mazmorras para bajar en cuadrilla con tus colegas, y el Tablón de Encargos con misiones diarias, Fichas y el Pase del Reino. Lo iremos soltando pieza a pieza. La lista completa de lo que ya hay y lo que llega está más arriba, en «El menú completo»."
+  },
+  {
     "orden": 1,
     "fecha": "Julio 2026",
     "etiqueta": "¡Hola!",

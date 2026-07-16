@@ -1,3 +1,40 @@
+/* El Reino 6 — nav: menú móvil + scroll-spy */
+(() => {
+  'use strict';
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  if (toggle && links) {
+    const setOpen = (open) => {
+      links.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    };
+    toggle.addEventListener('click', () => setOpen(!links.classList.contains('open')));
+    links.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+  }
+
+  // scroll-spy: resalta el enlace de la sección visible
+  const anchors = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+  const map = new Map();
+  anchors.forEach((a) => {
+    const sec = document.getElementById(a.getAttribute('href').slice(1));
+    if (sec) map.set(sec, a);
+  });
+  if ('IntersectionObserver' in window && map.size) {
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          anchors.forEach((a) => a.classList.remove('active'));
+          const a = map.get(e.target);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    map.forEach((_a, sec) => spy.observe(sec));
+  }
+})();
+
 /* El Reino 6 — brasas de fondo + scroll-reveal */
 (() => {
   'use strict';

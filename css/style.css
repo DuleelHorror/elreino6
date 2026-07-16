@@ -227,10 +227,72 @@ figure.shot{margin:26px 0 0}
 .reveal{opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease}
 .reveal.in{opacity:1; transform:none}
 
+/* ---------- marca / wordmark (hero + nav) ---------- */
+.brand{display:inline-flex; gap:.4em; align-items:baseline; flex-wrap:wrap; line-height:1}
+.brand-oh{color:var(--ember-hi); text-shadow:2px 2px 0 #7a2f00}
+.wordmark{font-family:var(--pixel); font-weight:700; margin:0; line-height:.92; letter-spacing:1px}
+.wm-oh{display:block; font-size:clamp(1.2rem,4.6vw,2.5rem); color:var(--ember-hi);
+  text-shadow:3px 3px 0 #000, 5px 5px 0 #7a2f00; letter-spacing:2px}
+.wm-more{display:block; font-size:clamp(2.3rem,10.5vw,6.2rem); color:#fff;
+  text-shadow:4px 4px 0 #000, 8px 8px 0 var(--arcane), 8px 8px 34px rgba(138,92,255,.5)}
+.subbrand{font-family:var(--pixel); font-weight:700; font-size:clamp(1.05rem,3.4vw,1.9rem);
+  color:var(--ink); margin:18px 0 0; letter-spacing:1px}
+.subbrand .six{color:var(--ember-hi)}
+.joke{font-size:.9rem; color:var(--ink-faint); max-width:54ch; margin:10px auto 0; font-style:italic}
+
+/* ---------- botón hamburguesa (móvil) ---------- */
+.nav-toggle{display:none; margin-left:auto; width:42px; height:36px; background:var(--panel-2);
+  border:2px solid var(--line-hi); cursor:pointer; position:relative;
+  box-shadow:inset 2px 2px 0 rgba(255,255,255,.05), inset -2px -2px 0 rgba(0,0,0,.5)}
+.nav-burger, .nav-burger::before, .nav-burger::after{position:absolute; left:50%; width:20px; height:2px;
+  background:var(--ink); transform:translateX(-50%); transition:transform .18s, opacity .18s}
+.nav-burger{top:50%; margin-top:-1px}
+.nav-burger::before{content:""; top:-6px}
+.nav-burger::after{content:""; top:6px}
+.nav-toggle[aria-expanded="true"] .nav-burger{background:transparent}
+.nav-toggle[aria-expanded="true"] .nav-burger::before{transform:translateX(-50%) translateY(6px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] .nav-burger::after{transform:translateX(-50%) translateY(-6px) rotate(-45deg)}
+.nav-links a.active{color:var(--ember-hi)}
+
+/* ---------- badges de estado ---------- */
+.badge{display:inline-block; font-family:var(--pixel); font-size:.56rem; letter-spacing:.5px;
+  text-transform:uppercase; padding:3px 7px; border:2px solid var(--line-hi); vertical-align:middle;
+  white-space:nowrap; box-shadow:inset 1px 1px 0 rgba(255,255,255,.08), inset -1px -1px 0 rgba(0,0,0,.4)}
+.badge-ok{color:#0b0910; background:var(--toxic); border-color:#a2f06f}
+.badge-soon{color:#0b0910; background:var(--ember); border-color:var(--ember-hi)}
+.badge-far{color:var(--arcane-hi); background:transparent; border-color:var(--arcane)}
+.eyebrow .badge{margin-left:8px}
+
+/* ---------- pasos (mazmorras) ---------- */
+.steps .step-c{padding:20px; border-top:4px solid var(--arcane); transition:transform .1s}
+.steps .step-c:hover{transform:translateY(-4px)}
+.step-n{font-family:var(--pixel); font-weight:700; font-size:2rem; color:var(--arcane-hi);
+  line-height:1; margin-bottom:8px; text-shadow:2px 2px 0 #000}
+.steps .step-c p{margin:0; color:var(--ink-soft); font-size:.9rem}
+
+/* ---------- menú completo (todo) ---------- */
+.legend{font-family:var(--pixel); font-size:.66rem; color:var(--ink-faint); letter-spacing:.3px;
+  margin:0 0 22px; line-height:2.1}
+.menu-cat{padding:20px 22px}
+.menu-cat h3{margin:0 0 6px; color:var(--arcane-hi); font-size:.95rem}
+.menu-cat ul{list-style:none; margin:0; padding:0}
+.menu-cat li{display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:9px 0; border-bottom:2px solid var(--line); color:var(--ink-soft); font-size:.92rem}
+.menu-cat li:last-child{border-bottom:0}
+
 /* ---------- responsive ---------- */
 @media(max-width:860px){
-  .nav-links{display:none}
+  .nav-toggle{display:block}
+  .nav-in{position:relative; flex-wrap:wrap}
+  .nav-soon{display:none}
+  .nav-links{display:none; position:absolute; top:100%; left:0; right:0; margin-left:0;
+    flex-direction:column; gap:0; background:rgba(8,6,12,.98); border-bottom:2px solid var(--line);
+    padding:6px 22px 12px}
+  .nav-links.open{display:flex}
+  .nav-links a{padding:12px 0; border-bottom:2px solid var(--line); font-size:.92rem}
+  .nav-links a:last-child{border-bottom:0}
   .grid-3,.grid-4{grid-template-columns:1fr 1fr}
+  .menu{grid-template-columns:1fr}
   .split{grid-template-columns:1fr}
 }
 @media(max-width:560px){
@@ -239,6 +301,8 @@ figure.shot{margin:26px 0 0}
   .band{padding:60px 0}
   .foot-grid{grid-template-columns:1fr}
   .hero-tags .tag{font-size:.66rem}
+  .brand{font-size:.82rem; letter-spacing:0}
+  .menu-cat li{font-size:.86rem}
 }
 
 /* accesibilidad: sin movimiento */
