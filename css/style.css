@@ -41,13 +41,13 @@ b,strong{color:#fff; font-weight:700}
 #embers{position:fixed; inset:0; width:100vw; height:100vh; z-index:0; pointer-events:none}
 
 /* fondo animado: nebulosa arcana que respira y deriva muy despacio */
-#aurora{position:fixed; inset:-15%; z-index:0; pointer-events:none; opacity:.85;
+#aurora{position:fixed; inset:-15%; z-index:0; pointer-events:none; opacity:1;
   background:
-    radial-gradient(38% 46% at 18% 20%, rgba(138,92,255,.20), transparent 60%),
-    radial-gradient(42% 50% at 82% 30%, rgba(255,106,26,.10), transparent 62%),
-    radial-gradient(50% 55% at 50% 96%, rgba(120,214,74,.06), transparent 60%),
-    radial-gradient(60% 60% at 72% 78%, rgba(67,201,214,.06), transparent 60%);
-  filter:blur(26px) saturate(1.04);
+    radial-gradient(40% 48% at 18% 18%, rgba(138,92,255,.30), transparent 60%),
+    radial-gradient(44% 52% at 82% 32%, rgba(255,106,26,.15), transparent 62%),
+    radial-gradient(52% 56% at 50% 98%, rgba(120,214,74,.09), transparent 60%),
+    radial-gradient(60% 60% at 72% 78%, rgba(67,201,214,.09), transparent 60%);
+  filter:blur(26px) saturate(1.06);
   animation:drift 36s ease-in-out infinite alternate}
 @keyframes drift{
   0%  {transform:translate3d(0,0,0) scale(1)}
@@ -138,9 +138,11 @@ b,strong{color:#fff; font-weight:700}
 @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
 
 /* ---------- BANDS / secciones ---------- */
-.band{position:relative; z-index:1; padding:84px 0; background:rgba(11,9,16,.955);
+/* algo translúcidas a propósito: dejan asomar la nebulosa y las brasas del
+   fondo por los huecos (los textos van sobre .block opacos → legibilidad OK) */
+.band{position:relative; z-index:1; padding:84px 0; background:rgba(11,9,16,.88);
   border-top:2px solid var(--line)}
-.band.alt{background:rgba(16,13,24,.965)}
+.band.alt{background:rgba(16,13,24,.90)}
 .eyebrow{font-family:var(--pixel); font-size:.72rem; letter-spacing:2px; text-transform:uppercase;
   color:var(--ember-hi); margin-bottom:14px}
 .eyebrow::before{content:"■ "; color:var(--arcane)}
@@ -382,7 +384,7 @@ figure.shot{margin:26px 0 0}
 
 /* ---------- susurros del Reino (divisores crípticos) ---------- */
 .whisper{position:relative; z-index:1; text-align:center; padding:32px 22px;
-  background:rgba(9,7,13,.9); border-top:2px solid var(--line); border-bottom:2px solid var(--line)}
+  background:rgba(9,7,13,.72); border-top:2px solid var(--line); border-bottom:2px solid var(--line)}
 .whisper span{font-family:var(--pixel); font-size:clamp(.72rem,1.7vw,.92rem); letter-spacing:.5px;
   color:var(--ink-faint); display:inline-block; max-width:60ch; line-height:1.7;
   animation:whisperGlow 6s ease-in-out infinite}
