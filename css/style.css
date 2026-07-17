@@ -454,3 +454,88 @@ figure.shot{margin:26px 0 0}
   html{scroll-behavior:auto}
   #embers{display:none}
 }
+
+/* ============================================================
+   LA CRÓNICA DEL REINO — botón del hero + reproductor flotante
+   ============================================================ */
+
+/* fila de acciones del hero */
+.hero-cta{display:flex; gap:14px; flex-wrap:wrap; align-items:center; margin-top:38px}
+.hero-cta .btn-big{margin-top:0}
+
+/* botón "Escucha la Crónica" — variante arcana del .btn */
+.btn-cronica{
+  cursor:pointer; display:inline-flex; align-items:center; gap:11px;
+  color:var(--ink); background:var(--raised); border:2px solid var(--arcane);
+  padding:15px 26px; font-size:.95rem;
+  box-shadow:inset 2px 2px 0 rgba(255,255,255,.08), inset -3px -3px 0 rgba(0,0,0,.5), 0 6px 0 #2a1a55;
+}
+.btn-cronica:hover{transform:translateY(2px); box-shadow:inset 2px 2px 0 rgba(255,255,255,.1), inset -3px -3px 0 rgba(0,0,0,.5), 0 4px 0 #2a1a55; border-color:var(--arcane-hi)}
+.btn-cronica:active{transform:translateY(6px); box-shadow:inset 2px 2px 0 rgba(255,255,255,.1), inset -2px -2px 0 rgba(0,0,0,.5), 0 0 0 #2a1a55}
+.btn-cronica.is-playing{border-color:var(--arcane-hi); color:var(--arcane-hi)}
+
+/* mini-ecualizador dentro del botón */
+.cr-eq{display:inline-flex; align-items:flex-end; gap:2px; height:16px}
+.cr-eq i{width:3px; height:5px; background:var(--arcane-hi); display:block;
+  animation:crEq 1s ease-in-out infinite}
+.cr-eq i:nth-child(2){animation-delay:.18s}
+.cr-eq i:nth-child(3){animation-delay:.36s}
+.cr-eq i:nth-child(4){animation-delay:.54s}
+.btn-cronica.is-playing .cr-eq i{animation-duration:.55s}
+@keyframes crEq{0%,100%{height:4px}50%{height:16px}}
+
+/* ---- reproductor flotante ---- */
+.cronica{
+  position:fixed; left:20px; bottom:20px; z-index:70; width:340px; max-width:calc(100vw - 40px);
+  background:var(--panel); border:2px solid var(--arcane);
+  box-shadow:inset 2px 2px 0 rgba(255,255,255,.05), inset -3px -3px 0 rgba(0,0,0,.55), 0 10px 0 rgba(0,0,0,.4), 0 0 26px rgba(138,92,255,.35);
+  font-family:var(--sans);
+  animation:crIn .32s ease-out both;
+}
+@keyframes crIn{from{transform:translateY(24px); opacity:0}to{transform:translateY(0); opacity:1}}
+
+.cr-top{display:flex; align-items:center; gap:9px; padding:9px 11px;
+  background:linear-gradient(90deg, rgba(138,92,255,.22), rgba(138,92,255,.04));
+  border-bottom:2px solid var(--line-hi)}
+.cr-live{width:9px; height:9px; background:var(--ember); box-shadow:0 0 9px var(--ember);
+  animation:crPulse 1.4s ease-in-out infinite; flex:0 0 auto}
+@keyframes crPulse{0%,100%{opacity:.35; transform:scale(.8)}50%{opacity:1; transform:scale(1.15)}}
+.cr-title{font-family:var(--pixel); font-size:.82rem; letter-spacing:.5px; color:var(--ink); flex:1 1 auto; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.cr-min,.cr-close{cursor:pointer; background:transparent; border:2px solid var(--line-hi); color:var(--ink-soft);
+  width:26px; height:26px; line-height:1; font-size:.8rem; flex:0 0 auto; display:grid; place-items:center; padding:0}
+.cr-min:hover,.cr-close:hover{color:var(--ink); border-color:var(--arcane-hi)}
+
+.cr-body{padding:12px 12px 13px}
+.cr-viz{width:100%; height:60px; display:block; background:var(--void); border:2px solid var(--line);
+  box-shadow:inset 2px 2px 0 rgba(0,0,0,.6)}
+
+.cr-controls{display:flex; align-items:center; gap:10px; margin-top:11px}
+.cr-play{cursor:pointer; flex:0 0 auto; width:40px; height:40px; font-size:1rem; color:#0b0910;
+  background:var(--arcane); border:2px solid var(--arcane-hi);
+  box-shadow:inset 2px 2px 0 rgba(255,255,255,.35), inset -2px -2px 0 rgba(0,0,0,.35), 0 4px 0 #2a1a55;
+  display:grid; place-items:center; padding:0; transition:transform .08s, box-shadow .08s}
+.cr-play:hover{transform:translateY(1px); box-shadow:inset 2px 2px 0 rgba(255,255,255,.35), inset -2px -2px 0 rgba(0,0,0,.35), 0 3px 0 #2a1a55}
+.cr-play:active{transform:translateY(4px); box-shadow:inset 2px 2px 0 rgba(255,255,255,.3), 0 0 0 #2a1a55}
+
+.cr-bar{position:relative; flex:1 1 auto; height:12px; background:var(--void);
+  border:2px solid var(--line-hi); cursor:pointer; box-shadow:inset 2px 2px 0 rgba(0,0,0,.6)}
+.cr-fill{position:absolute; inset:0; width:0; background:linear-gradient(90deg, var(--arcane), var(--arcane-hi));
+  box-shadow:0 0 8px rgba(138,92,255,.6)}
+.cr-bar:focus-visible{outline:2px solid var(--arcane-hi); outline-offset:2px}
+.cr-time{font-family:var(--pixel); font-size:.74rem; color:var(--ink-soft); flex:0 0 auto; min-width:34px; text-align:right}
+
+/* minimizado: solo la barra superior, anclado abajo-izquierda */
+.cronica.min{width:220px}
+.cronica.min .cr-body{display:none}
+.cronica.min .cr-title{font-size:.76rem}
+
+@media(max-width:560px){
+  .cronica{left:10px; right:10px; bottom:10px; width:auto}
+  .cronica.min{width:200px; right:auto}
+}
+
+/* accesibilidad: sin movimiento → paramos el ecualizador y el latido */
+@media(prefers-reduced-motion:reduce){
+  .cr-eq i,.cr-live,.cronica{animation:none !important}
+  .cr-eq i{height:11px}
+}
