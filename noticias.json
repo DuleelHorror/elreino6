@@ -1,5 +1,12 @@
 [
   {
+    "orden": 3,
+    "fecha": "Julio 2026",
+    "etiqueta": "En camino",
+    "titulo": "Hay algo debajo del Reino",
+    "cuerpo": "Once niveles de pasillo amarillo que no salen en ningún mapa: moqueta húmeda, fluorescentes que zumban y ninguna ventana. Hay cosas ahí dentro; algunas se quedan quietas mientras las mires. Las paredes cambian de sitio, las luces se van a ratos y el chat te enseña mensajes de gente que no está conectada. Ya está montado y traducido entero, hasta el último libro. <b>Todavía no se puede entrar, y eso es a propósito</b>: la puerta la abrirá una misión. Lo tienes más arriba, en «<a href='#backrooms'>Un sitio que no debería estar ahí</a>»."
+  },
+  {
     "orden": 2,
     "fecha": "Julio 2026",
     "etiqueta": "En camino",

@@ -32,8 +32,9 @@
       <a href="#tablon">Tablón</a>
       <a href="#mascotas">Mascotas</a>
       <a href="#mazmorras">Mazmorras</a>
+      <a href="#backrooms">Backrooms</a>
       <a href="#todo">Todo</a>
-      <a href="#noticias">Noticias</a>
+      <a href="#noticias" id="navNoticias">Noticias<span class="nav-dot" id="navDot" hidden></span></a>
     </nav>
     <span class="nav-soon">PRÓXIMAMENTE</span>
   </div>
@@ -45,6 +46,15 @@
   <div class="hero-glow" aria-hidden="true"></div>
   <div class="hero-in">
     <div class="hero-badge">Servidor de Minecraft · Rol · Humor negro</div>
+
+    <!-- Aviso de novedades: lo rellena js/noticias.js desde noticias.json.
+         NO tocar a mano: publicas una noticia y esto se actualiza solo. -->
+    <a class="hero-news" id="heroNews" href="#noticias" hidden>
+      <span class="hn-new" id="hnNew" hidden>NUEVO</span>
+      <span class="hn-k">Lo último</span>
+      <span class="hn-t" id="hnT"></span>
+      <span class="hn-go">ver ▸</span>
+    </a>
     <h1 class="wordmark"><span class="wm-oh">OH&nbsp;NO!</span><span class="wm-more">MORE&nbsp;REINOS</span></h1>
     <div class="subbrand">El Reino <span class="six">6</span></div>
     <p class="joke">El sexto servidor que montamos. Los cinco anteriores, por lo visto, no fueron aviso suficiente.</p>
@@ -247,10 +257,34 @@
   </div>
 </section>
 
+<!-- ===== BACKROOMS ===== -->
+<section id="backrooms" class="band backrooms">
+  <div class="wrap reveal">
+    <div class="eyebrow">09 · Un sitio que no debería estar ahí <span class="badge badge-soon">En camino</span></div>
+    <h2 class="back-h">A veces la realidad se afloja. <span class="hl-fluor">Y te cuelas.</span></h2>
+    <p class="lead">Debajo de todo hay kilómetros de pasillo amarillo. Moqueta húmeda, fluorescentes que zumban y ninguna ventana. <b>Once niveles</b>, cada uno peor que el anterior. Aquí no se viene a farmear: se viene a salir.</p>
+
+    <div class="grid grid-4 steps">
+      <div class="block step-c back-c"><div class="step-n">01</div><h3>No estás solo</h3><p>Hay cosas ahí. Algunas solo miran. Una se queda quieta mientras la mires; en cuanto apartas la vista, está más cerca.</p></div>
+      <div class="block step-c back-c"><div class="step-n">02</div><h3>La casa se mueve</h3><p>Las paredes cambian de sitio. Las luces se van quince segundos. Aparecen carteles que antes no estaban.</p></div>
+      <div class="block step-c back-c"><div class="step-n">03</div><h3>El chat miente</h3><p>Ves mensajes de gente que no está conectada. Alguien entra. Alguien se va. No hay nadie.</p></div>
+      <div class="block step-c back-c"><div class="step-n">04</div><h3>Cuanto más tardas, peor</h3><p>Lleva la cuenta de los minutos que llevas dentro. Y hace algo con ellos.</p></div>
+    </div>
+
+    <div class="block card recipe back-card" style="margin-top:16px">
+      <div class="card-h"><span class="ic">🚪</span><h3>Once niveles, once maneras de perderte</h3></div>
+      <p class="recipe-note">El Vestíbulo y su moqueta infinita · La Zona Habitable, donde algo gotea · Las Tuberías · Las Piscinas, que casi parecen un descanso · La Sala de Servidores · La Biblioteca, con estanterías que siguen más allá del final del mundo · y unos cuantos que es mejor que descubras tú.</p>
+      <p class="recipe-note back-cold"><b>Morir no te saca.</b> Solo te devuelve al principio.</p>
+    </div>
+
+    <p class="back-foot">Todavía no puedes entrar. Es a propósito.</p>
+  </div>
+</section>
+
 <!-- ===== MUNDO VIVO ===== -->
 <section id="mundo" class="band alt">
   <div class="wrap reveal">
-    <div class="eyebrow">09 · El mundo se mueve</div>
+    <div class="eyebrow">10 · El mundo se mueve</div>
     <h2>El Reino <span class="hl-arc">no te espera quieto</span>.</h2>
     <p class="lead">Mientras tú haces tus cosas, el mundo hace las suyas. Cambia de estación, monta eventos sin avisar demasiado, protege tus construcciones y —cuando la palmas— procura no arruinarte la tarde.</p>
 
@@ -268,7 +302,7 @@
 <!-- ===== TODO LO QUE PUEDES HACER (menú completo) ===== -->
 <section id="todo" class="band">
   <div class="wrap reveal">
-    <div class="eyebrow">10 · El menú completo</div>
+    <div class="eyebrow">11 · El menú completo</div>
     <h2>Todo lo que puedes hacer en el Reino.</h2>
     <p class="lead">Un vistazo a TODO de golpe: lo que ya está montado, lo que llega pronto y lo que asoma en el horizonte. Sí, es mucho. Ese es el problema.</p>
     <div class="legend">
@@ -318,6 +352,7 @@
       <div class="block menu-cat">
         <h3>🌍 El mundo</h3>
         <ul>
+          <li>Las Backrooms: once niveles de pasillo amarillo <span class="badge badge-soon">En camino</span></li>
           <li>Eventos de mundo (fiebre del oro, noche de horda…) <span class="badge badge-ok">Listo</span></li>
           <li>Muerte amable: tumba + asegurar tus objetos <span class="badge badge-ok">Listo</span></li>
           <li>Candados de cofres <span class="badge badge-ok">Listo</span></li>
@@ -359,7 +394,7 @@
 <!-- ===== EL REPARTO ===== -->
 <section id="reparto" class="band alt">
   <div class="wrap reveal">
-    <div class="eyebrow">11 · El reparto</div>
+    <div class="eyebrow">12 · El reparto</div>
     <h2>Un pueblo lleno de gente que, <span class="hl-arc">técnicamente, funciona</span>.</h2>
     <div class="grid grid-4 cast">
       <div class="block npc"><span class="npc-ic">🦫</span><b>Toni</b><span>Capataz carpincho uruguayo, con más curiosidades sobre capibaras que ganas de atender una obra urgente.</span></div>
@@ -378,7 +413,7 @@
 <!-- ===== INMERSIVO / CÓMO SE JUEGA ===== -->
 <section id="comodo" class="band">
   <div class="wrap reveal">
-    <div class="eyebrow">12 · Cómo se juega</div>
+    <div class="eyebrow">13 · Cómo se juega</div>
     <h2>Cómodo, claro y <span class="hl-ember">sin pelearte con un manual de cuarenta páginas</span>.</h2>
     <div class="grid grid-3 feats">
       <div class="block feat"><div class="feat-ic">💬</div><h3>Diálogos en pantalla</h3><p>Los NPC hablan mediante una <b>caja a pantalla completa</b>, no por el chat. Así puedes leer el lore aunque otras personas mantengan una conversación crucial sobre patatas. Es una función nativa de Minecraft y no necesita mods.</p></div>
@@ -397,7 +432,7 @@
 <!-- ===== NOTICIAS ===== -->
 <section id="noticias" class="band alt">
   <div class="wrap reveal">
-    <div class="eyebrow">13 · Noticias</div>
+    <div class="eyebrow">14 · Noticias</div>
     <h2>Lo último del <span class="hl-arc">Reino</span></h2>
     <p class="lead">Aquí publicaremos las novedades, las nuevas sagas y la fecha de apertura en cuanto la tengamos. Hasta entonces, esta sección cumplirá la noble función de alimentar la impaciencia.</p>
     <div id="noticias-list" class="news">

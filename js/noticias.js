@@ -29,7 +29,53 @@
         ${n.img ? `<img src="${esc(n.img)}" alt="" loading="lazy" style="margin:0 0 12px;border:2px solid var(--line-hi)">` : ''}
         <p>${n.cuerpo || ''}</p>
       </article>`).join('');
+
+    avisoNovedades(items[0]);
   } catch (e) {
     list.innerHTML = fallback;
+  }
+
+  /* ── Aviso de novedades ──────────────────────────────────────────────────
+     Problema: las noticias estan al final de la pagina (seccion 14) -> quien
+     entra a menudo no se entera de nada sin bajar entero.
+     Solucion: la ultima noticia sale en el HERO, y si NO la has visto todavia
+     (localStorage con el mayor `orden` que ya viste) se marca como NUEVO + un
+     punto en el nav. Se rellena de noticias.json -> publicar una noticia basta.
+     Sin cookies, sin servidor, sin mantenimiento. */
+  function avisoNovedades(ultima) {
+    if (!ultima) return;
+    const caja = document.getElementById('heroNews');
+    const txt = document.getElementById('hnT');
+    const nuevo = document.getElementById('hnNew');
+    const punto = document.getElementById('navDot');
+    if (!caja || !txt) return;
+
+    txt.textContent = ultima.titulo || '';
+    caja.hidden = false;
+
+    const CLAVE = 'er6_ultima_noticia_vista';
+    let visto = 0;
+    try { visto = parseInt(localStorage.getItem(CLAVE), 10) || 0; } catch (e) { /* modo privado */ }
+    const orden = Number(ultima.orden) || 0;
+
+    if (orden > visto) {                       // hay algo que este navegador no ha visto
+      if (nuevo) nuevo.hidden = false;
+      caja.classList.add('is-new');
+      if (punto) punto.hidden = false;
+      const marcarVisto = () => {
+        try { localStorage.setItem(CLAVE, String(orden)); } catch (e) { /* nada */ }
+        if (nuevo) nuevo.hidden = true;
+        caja.classList.remove('is-new');
+        if (punto) punto.hidden = true;
+      };
+      caja.addEventListener('click', marcarVisto);
+      const sec = document.getElementById('noticias');
+      if (sec && 'IntersectionObserver' in window) {   // o si llegas bajando hasta ellas
+        const io = new IntersectionObserver((es) => {
+          if (es.some((x) => x.isIntersecting)) { marcarVisto(); io.disconnect(); }
+        }, { threshold: 0.25 });
+        io.observe(sec);
+      }
+    }
   }
 })();

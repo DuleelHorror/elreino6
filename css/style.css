@@ -187,6 +187,74 @@ figure.shot{margin:26px 0 0}
 .quote cite{display:block; margin-top:14px; font-style:normal; font-family:var(--pixel);
   font-size:.72rem; letter-spacing:.5px; color:var(--ember-hi)}
 
+
+
+/* ── AVISO DE NOVEDADES (hero + nav) ───────────────────────────────────────
+   Las noticias viven al final de la pagina; quien entra a menudo no las ve.
+   Esto saca la ultima en el hero y marca NUEVO si este navegador no la ha
+   visto (localStorage). Lo rellena js/noticias.js desde noticias.json. */
+.hero-news{
+  display:inline-flex; align-items:center; gap:10px; flex-wrap:wrap;
+  margin:0 0 18px; padding:9px 14px; text-decoration:none;
+  background:rgba(19,16,28,.86); border:2px solid var(--line-hi);
+  transition:border-color .12s, transform .12s;
+}
+/* 🔴 OBLIGATORIO: un `display` explicito PISA al [hidden]{display:none} del
+   navegador -> sin esto, la caja se ve VACIA hasta que el JS la rellena (y
+   para siempre si el JS falla o no carga). Mismo caso en .hn-new y .nav-dot. */
+.hero-news[hidden], .hn-new[hidden], .nav-dot[hidden]{display:none !important}
+.hero-news:hover{border-color:var(--ember); transform:translateY(-2px)}
+.hero-news.is-new{border-color:var(--ember)}
+.hn-k{font-family:var(--pixel); font-size:.62rem; letter-spacing:1px;
+  color:var(--ink-faint); text-transform:uppercase}
+.hn-t{color:var(--ink); font-size:.94rem; font-weight:600}
+.hn-go{font-family:var(--pixel); font-size:.62rem; color:var(--ember-hi); letter-spacing:.5px}
+.hn-new{font-family:var(--pixel); font-size:.58rem; letter-spacing:1px;
+  background:var(--ember); color:#1b0d02; padding:3px 7px; font-weight:700}
+.hero-news.is-new .hn-new{animation:latido 2.4s ease-in-out infinite}
+@keyframes latido{0%,100%{opacity:1}50%{opacity:.55}}
+@media (prefers-reduced-motion:reduce){.hero-news.is-new .hn-new{animation:none}}
+/* punto en el enlace Noticias del nav */
+.nav-dot{display:inline-block; width:7px; height:7px; margin-left:5px;
+  background:var(--ember); vertical-align:super}
+@media (max-width:720px){ .hn-t{font-size:.86rem} .hero-news{padding:8px 11px} }
+
+/* ── BACKROOMS ──────────────────────────────────────────────────────────────
+   Rompe A PROPOSITO con el tema del sitio (obsidiana + brasa). Las Backrooms
+   son luz fluorescente amarilla y enferma: el terror es que NO hay sombra
+   donde esconderse. El contraste con el resto de la web ES el mensaje.
+   Registro: CERO humor (.claude/rules/backrooms.md). */
+.backrooms{
+  background:linear-gradient(180deg, #14120a 0%, #1a1708 55%, #12100a 100%);
+  overflow:hidden; border-top:1px solid #3a3410; border-bottom:1px solid #3a3410;
+}
+.backrooms::before{                      /* el fluorescente del techo */
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(75% 55% at 50% -5%, rgba(226,215,110,.16), transparent 62%);
+  animation:buzz 6s steps(1) infinite;   /* parpadeo lento y feo */
+}
+@media (prefers-reduced-motion:reduce){ .backrooms::before{animation:none} }
+@keyframes buzz{
+  0%,92%,100%{opacity:1} 93%{opacity:.55} 94%{opacity:1} 96%{opacity:.7} 97%{opacity:1}
+}
+.backrooms .wrap{position:relative; z-index:1}
+.back-h{font-size:clamp(1.8rem,5vw,3.2rem)}
+.hl-fluor{color:#e2d76e; text-shadow:0 0 22px rgba(226,215,110,.35)}
+.backrooms .lead{color:#cdc59a}
+/* el .steps .step-c del sitio mete un borde superior MORADO (--arcane): aqui
+   canta muchisimo contra el amarillo -> se pisa con la selectividad justa */
+.steps .step-c.back-c{border-top-color:#c9bd52}
+.back-c{background:rgba(32,29,12,.72); border-color:#3a3410}
+.back-c .step-n{color:#e2d76e; border-color:#4a4214}
+.back-c h3{color:#efe7b4}
+.back-c p{color:#b3ab84}
+.back-card{background:rgba(28,25,10,.8); border-color:#3a3410}
+.back-card .card-h h3{color:#efe7b4}
+.back-card .recipe-note{color:#b3ab84}
+.back-cold{margin-top:12px; padding-top:12px; border-top:1px solid #3a3410; color:#cdc59a}
+.back-foot{margin-top:18px; font-family:var(--pixel); font-size:.78rem;
+  letter-spacing:.5px; color:#8c855e; text-align:center}
+
 /* reparto */
 .cast .npc{padding:18px; text-align:center; transition:transform .1s}
 .cast .npc:hover{transform:translateY(-4px)}
