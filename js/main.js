@@ -3,16 +3,36 @@
   'use strict';
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
+  const groups = Array.from(document.querySelectorAll('.nav-group'));
+  const closeGroups = (except) => groups.forEach((g) => {
+    if (g === except) return;
+    g.classList.remove('open');
+    const b = g.querySelector('.nav-group-btn');
+    if (b) b.setAttribute('aria-expanded', 'false');
+  });
   if (toggle && links) {
     const setOpen = (open) => {
       links.classList.toggle('open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+      if (!open) closeGroups();
     };
     toggle.addEventListener('click', () => setOpen(!links.classList.contains('open')));
     links.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { setOpen(false); closeGroups(); } });
   }
+  // desplegables por sección: abrir/cerrar el submenú y cerrar al pinchar fuera
+  groups.forEach((g) => {
+    const btn = g.querySelector('.nav-group-btn');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      const willOpen = !g.classList.contains('open');
+      closeGroups(g);
+      g.classList.toggle('open', willOpen);
+      btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+    });
+  });
+  document.addEventListener('click', (e) => { if (!e.target.closest('.nav-group')) closeGroups(); });
 
   // scroll-spy: resalta el enlace de la sección visible
   const anchors = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
