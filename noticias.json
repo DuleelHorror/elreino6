@@ -1,5 +1,12 @@
 [
   {
+    "orden": 4,
+    "fecha": "Agosto 2026",
+    "etiqueta": "Nuevo",
+    "titulo": "El Ayuntamiento empieza a publicar un diario",
+    "cuerpo": "El Reino ya tiene su propio boletín: <b>El Heraldo del Reino</b>, donde la Oficina de Prensa del Ayuntamiento deja por escrito lo que pasa cada jornada en el término. Altas en el censo, defunciones, obras inspeccionadas y aquellas anomalías que, sin revestir gravedad alguna, conviene documentar. El <b>Número 1</b> cubre la noche de la apertura: veinte vecinos, ciento treinta y cinco defunciones, un culto fundado ante la Torre y cincuenta y cinco minutos en los que el Reino dejó de verse a sí mismo. <a href='diario/'>Leer la hemeroteca</a>."
+  },
+  {
     "orden": 3,
     "fecha": "Julio 2026",
     "etiqueta": "En camino",

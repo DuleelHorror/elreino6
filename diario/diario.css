@@ -1,0 +1,339 @@
+/* ============================================================================
+   EL HERALDO DEL REINO — hoja de estilos del Diario.
+
+   🔴 ES AUTÓNOMA A PROPÓSITO: no enlaza `css/style.css` de la landing.
+   El Diario es una página aparte (encargo del usuario, 2026-08-23) y tiene que poder
+   sobrevivir a cualquier retoque de la web de jugadores. Los cinco colores de la paleta
+   están copiados aquí como suyos; es más barato que el acoplamiento.
+
+   La única dependencia hacia fuera son las fuentes de `../assets/fonts/`.
+   ============================================================================ */
+
+@font-face{
+  font-family:'Monocraft';
+  src:url('../assets/fonts/Monocraft.ttf') format('truetype');
+  font-weight:400; font-display:swap;
+}
+@font-face{
+  font-family:'Monocraft';
+  src:url('../assets/fonts/Monocraft-Bold.ttf') format('truetype');
+  font-weight:700; font-display:swap;
+}
+
+:root{
+  --void:#050408;          /* el fondo, la mesa sobre la que está el periódico */
+  --papel:#e8dfc9;         /* el papel */
+  --papel-hi:#f3ecdb;
+  --tinta:#16130e;         /* la tinta */
+  --tinta-2:#4a4232;
+  --tinta-3:#7d7259;
+  --filete:#b9ab8a;        /* los filetes */
+  --rojo:#8f2d1c;          /* el rojo de imprenta: sellos y cabeceras */
+  --arcane:#8a5cff;        /* el morado del Reino, solo para el enlace de vuelta */
+
+  --pixel:'Monocraft', ui-monospace, Consolas, monospace;
+  --serif:Georgia, 'Iowan Old Style', 'Times New Roman', Times, serif;
+  --hoja:1160px;
+}
+
+*{box-sizing:border-box; border-radius:0}
+html{scroll-behavior:smooth}
+body{
+  margin:0; padding:26px 16px 60px;
+  background:
+    radial-gradient(60% 50% at 50% 0%, rgba(138,92,255,.10), transparent 70%),
+    var(--void);
+  color:var(--tinta);
+  font-family:var(--serif); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%; display:block}
+a{color:inherit}
+hr{border:0; border-top:1px solid var(--filete); margin:10px 0}
+
+/* ── LA HOJA ──────────────────────────────────────────────────────────── */
+.hoja{
+  max-width:var(--hoja); margin:0 auto; padding:34px 40px 30px;
+  background:var(--papel);
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0,0,0,.012) 0 2px, transparent 2px 4px),
+    radial-gradient(120% 60% at 50% 0%, rgba(255,255,255,.5), transparent 60%);
+  box-shadow:0 30px 70px rgba(0,0,0,.7), 0 0 0 1px rgba(0,0,0,.5);
+}
+
+/* ── MANCHETA ─────────────────────────────────────────────────────────── */
+.mancheta{border-bottom:3px double var(--tinta); padding-bottom:10px; margin-bottom:14px}
+.mancheta .lema{
+  font-family:var(--pixel); font-size:10px; letter-spacing:.32em; text-transform:uppercase;
+  color:var(--tinta-3); text-align:center; margin:0 0 8px;
+}
+.mancheta h1{
+  font-family:var(--pixel); font-weight:700;
+  font-size:clamp(26px,6.2vw,62px); line-height:1; letter-spacing:.02em;
+  text-align:center; margin:0; color:var(--tinta);
+}
+.mancheta h1 .art{color:var(--rojo)}
+.tira{
+  display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  margin-top:10px; padding-top:8px; border-top:1px solid var(--filete);
+  font-family:var(--pixel); font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--tinta-2);
+}
+
+/* ── TITULAR ──────────────────────────────────────────────────────────── */
+.titular{
+  font-size:clamp(28px,4.6vw,52px); line-height:1.03; font-weight:700;
+  text-align:center; margin:24px auto 12px; max-width:22ch; letter-spacing:-.01em;
+}
+.sumario{
+  font-size:19px; line-height:1.5; font-style:italic; color:var(--tinta-2);
+  text-align:center; max-width:62ch; margin:0 auto 8px;
+}
+.firma{
+  font-family:var(--pixel); font-size:10px; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--tinta-3); text-align:center; margin:0 0 18px;
+  padding-bottom:16px; border-bottom:3px double var(--tinta);
+}
+
+/* ── EL CUERPO, A COLUMNAS ────────────────────────────────────────────── */
+.cuerpo{column-count:2; column-gap:34px; column-rule:1px solid var(--filete)}
+.pieza{break-inside:avoid; margin:0 0 26px}
+.pieza:last-child{margin-bottom:0}
+
+.kicker{
+  font-family:var(--pixel); font-size:10px; letter-spacing:.26em; text-transform:uppercase;
+  color:var(--rojo); margin:0 0 5px; padding-bottom:4px;
+  border-bottom:1px solid var(--filete);
+}
+.pieza h2{
+  font-size:24px; line-height:1.15; margin:0 0 9px; font-weight:700; letter-spacing:-.01em;
+}
+.pieza p{margin:0 0 10px; text-align:justify; hyphens:auto}
+.pieza b,.pieza strong{font-weight:700}
+
+/* capitular, solo en la pieza de portada */
+.pieza.abre > p:first-of-type::first-letter{
+  float:left; font-size:58px; line-height:.82; padding:4px 8px 0 0; font-weight:700;
+  color:var(--rojo);
+}
+
+blockquote{
+  margin:12px 0; padding:10px 14px; border-left:3px solid var(--rojo);
+  background:rgba(0,0,0,.035); font-style:italic; font-size:17px;
+}
+
+/* ── FOTOS ────────────────────────────────────────────────────────────── */
+figure{margin:0 0 12px; break-inside:avoid}
+figure img{
+  width:100%; border:1px solid var(--tinta-2); padding:4px; background:var(--papel-hi);
+  filter:grayscale(.62) sepia(.16) contrast(1.06);
+  transition:filter .35s ease;
+}
+figure:hover img{filter:none}
+figcaption{
+  font-size:13px; line-height:1.4; font-style:italic; color:var(--tinta-2);
+  margin-top:5px; padding-left:8px; border-left:2px solid var(--filete);
+}
+figcaption .rev{
+  display:block; font-family:var(--pixel); font-style:normal; font-size:9px;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--tinta-3); margin-top:4px;
+}
+
+/* ── RECUADROS ────────────────────────────────────────────────────────── */
+.recuadro{
+  break-inside:avoid; border:1px solid var(--tinta); padding:14px 16px; margin:0 0 26px;
+  background:rgba(0,0,0,.03); box-shadow:3px 3px 0 rgba(0,0,0,.10);
+}
+.recuadro h3{
+  font-family:var(--pixel); font-size:12px; letter-spacing:.2em; text-transform:uppercase;
+  margin:0 0 10px; padding-bottom:7px; border-bottom:3px double var(--tinta);
+}
+.recuadro p{margin:0 0 7px; font-size:15.5px}
+.recuadro .rk{display:flex; gap:8px; align-items:baseline; margin:0 0 3px}
+.recuadro .rk span{
+  font-family:var(--pixel); font-size:11px; color:var(--tinta-3); min-width:20px;
+}
+.recuadro .rk b{margin-left:auto; font-variant-numeric:tabular-nums}
+.recuadro .cita{font-style:italic; padding-left:10px; border-left:2px solid var(--filete)}
+.recuadro .pie{font-size:13px; color:var(--tinta-2); font-style:italic; margin-top:9px}
+
+/* ── EL PARTE ─────────────────────────────────────────────────────────── */
+.parte{margin:26px 0 0; padding-top:14px; border-top:3px double var(--tinta)}
+.parte h3{
+  font-family:var(--pixel); font-size:12px; letter-spacing:.24em; text-transform:uppercase;
+  text-align:center; margin:0 0 12px;
+}
+.parte dl{margin:0; columns:2; column-gap:34px}
+.parte .fila{
+  display:flex; align-items:baseline; gap:6px; break-inside:avoid; margin:0 0 5px;
+  font-size:15.5px;
+}
+.parte .fila dt{color:var(--tinta-2); white-space:nowrap}
+.parte .fila .puntos{flex:1; border-bottom:1px dotted var(--filete); transform:translateY(-4px)}
+.parte .fila dd{margin:0; font-weight:700; text-align:right}
+
+/* ── AVISO OFICIAL ────────────────────────────────────────────────────── */
+.aviso{
+  margin:26px 0 0; padding:18px 22px; border:3px double var(--tinta); position:relative;
+  font-size:15.5px; line-height:1.55;
+}
+.aviso h3{
+  font-family:var(--pixel); font-size:11px; letter-spacing:.26em; text-transform:uppercase;
+  color:var(--rojo); margin:0 0 8px;
+}
+.sello{
+  position:absolute; right:14px; bottom:8px; transform:rotate(-11deg);
+  font-family:var(--pixel); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--rojo); border:2px solid var(--rojo); padding:5px 10px; opacity:.55;
+  pointer-events:none;
+}
+
+/* ── PIE ──────────────────────────────────────────────────────────────── */
+.pie-hoja{
+  max-width:var(--hoja); margin:16px auto 0;
+  display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+  font-family:var(--pixel); font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+  color:#6f6688;
+}
+.pie-hoja a{color:#a89fc0; text-decoration:none; border-bottom:1px solid #3a3350}
+.pie-hoja a:hover{color:var(--arcane-hi,#b493ff); border-bottom-color:var(--arcane)}
+
+/* ── NAVEGACIÓN ENTRE NÚMEROS ─────────────────────────────────────────── */
+.pasar{
+  display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
+  margin:24px 0 0; padding-top:14px; border-top:1px solid var(--filete);
+  font-family:var(--pixel); font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+}
+.pasar a{
+  color:var(--tinta); text-decoration:none; border:1px solid var(--tinta-3);
+  padding:8px 13px; background:rgba(0,0,0,.03);
+}
+.pasar a:hover{background:var(--tinta); color:var(--papel)}
+.pasar .no{opacity:.3; padding:8px 13px; border:1px solid transparent}
+
+/* ── HEMEROTECA (la portada del Diario) ───────────────────────────────── */
+.intro{
+  max-width:64ch; margin:0 auto 26px; text-align:center; font-size:17.5px;
+  color:var(--tinta-2);
+}
+.mes{margin:0 0 30px; break-inside:avoid}
+.mes h3{
+  font-family:var(--pixel); font-size:13px; letter-spacing:.28em; text-transform:uppercase;
+  margin:0 0 10px; padding-bottom:7px; border-bottom:3px double var(--tinta);
+}
+.cal{display:grid; grid-template-columns:repeat(7,1fr); gap:5px}
+.cal .dow{
+  font-family:var(--pixel); font-size:9px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--tinta-3); text-align:center; padding:2px 0;
+}
+.cal .d{
+  aspect-ratio:1/1; border:1px solid var(--filete); padding:5px 6px; position:relative;
+  display:flex; flex-direction:column; justify-content:space-between;
+  font-family:var(--pixel); font-size:11px; color:var(--tinta-3);
+  background:
+    repeating-linear-gradient(45deg, rgba(0,0,0,.028) 0 4px, transparent 4px 8px);
+}
+.cal .d.vacio{border-color:transparent; background:none}
+.cal .d .n{font-size:12px}
+.cal .d.hay{
+  background:var(--tinta); border-color:var(--tinta); color:var(--papel);
+  text-decoration:none;
+}
+.cal .d.hay .n{color:var(--papel-hi); font-weight:700}
+.cal .d.hay .num{
+  font-size:9px; letter-spacing:.1em; color:#c9bda3; text-transform:uppercase;
+}
+.cal a.d.hay:hover{background:var(--rojo); border-color:var(--rojo)}
+.cal .d.hoy{outline:2px solid var(--rojo); outline-offset:1px}
+
+.sumarios{margin-top:8px; column-count:2; column-gap:34px}
+.num{
+  break-inside:avoid; display:block; text-decoration:none; color:inherit;
+  border-top:1px solid var(--filete); padding:12px 0; margin:0;
+}
+.num:first-child{border-top:3px double var(--tinta)}
+.num .et{
+  font-family:var(--pixel); font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--rojo); display:block; margin-bottom:3px;
+}
+.num h4{font-size:20px; line-height:1.15; margin:0 0 5px; font-weight:700}
+.num p{margin:0; font-size:15px; color:var(--tinta-2); font-style:italic}
+.num:hover h4{color:var(--rojo)}
+
+/* ── HEMEROTECA: el último número, destacado ──────────────────────────── */
+.secc{
+  font-family:var(--pixel); font-size:12px; letter-spacing:.28em; text-transform:uppercase;
+  margin:34px 0 14px; padding-bottom:8px; border-bottom:3px double var(--tinta);
+}
+.destacado{
+  display:grid; grid-template-columns:230px 1fr; gap:22px; align-items:center;
+  text-decoration:none; color:inherit; margin:22px 0 0;
+  border:1px solid var(--tinta); padding:18px; background:rgba(0,0,0,.035);
+  box-shadow:5px 5px 0 rgba(0,0,0,.12); transition:box-shadow .2s ease, transform .2s ease;
+}
+.destacado:hover{box-shadow:8px 8px 0 rgba(143,45,28,.30); transform:translate(-2px,-2px)}
+.destacado .dfoto img{
+  width:100%; aspect-ratio:1/1; object-fit:cover; border:1px solid var(--tinta-2); padding:4px;
+  background:var(--papel-hi); filter:grayscale(.62) sepia(.16) contrast(1.06);
+  transition:filter .35s ease;
+}
+.destacado:hover .dfoto img{filter:none}
+.destacado .dtxt{display:flex; flex-direction:column; gap:7px}
+.destacado .et{
+  font-family:var(--pixel); font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--rojo);
+}
+.destacado .dtit{font-size:clamp(21px,2.6vw,31px); line-height:1.12; font-weight:700}
+.destacado .dsum{font-size:16px; font-style:italic; color:var(--tinta-2); line-height:1.45}
+.destacado .dcta{
+  font-family:var(--pixel); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--rojo); margin-top:3px;
+}
+
+/* ── HEMEROTECA: el Reino en cifras ───────────────────────────────────── */
+.cifras{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px; margin:22px 0 0;
+  background:var(--filete); border:1px solid var(--filete);
+}
+.cifra{
+  background:var(--papel); padding:14px 10px; text-align:center;
+  display:flex; flex-direction:column; gap:3px;
+}
+.cifra b{font-family:var(--pixel); font-size:clamp(22px,3.4vw,34px); line-height:1; color:var(--rojo)}
+.cifra span{
+  font-family:var(--pixel); font-size:9px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--tinta-3); line-height:1.35;
+}
+
+/* la casilla del calendario con su miniatura de fondo */
+.cal .d.hay{position:relative; overflow:hidden}
+.cal .d .dbg{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  opacity:.30; filter:grayscale(1) contrast(1.15); transition:opacity .25s ease;
+}
+.cal a.d.hay:hover .dbg{opacity:.52; filter:none}
+.cal .d.hay .n,.cal .d.hay .num{position:relative; z-index:1; text-shadow:0 1px 3px rgba(0,0,0,.9)}
+.mes h3 em{
+  float:right; font-style:normal; font-size:10px; letter-spacing:.16em; color:var(--tinta-3);
+  font-weight:400;
+}
+
+/* ── MÓVIL ────────────────────────────────────────────────────────────── */
+@media (max-width:880px){
+  body{padding:14px 8px 40px; font-size:16px}
+  .hoja{padding:20px 18px 22px}
+  .cuerpo{column-count:1}
+  .parte dl{columns:1}
+  .sumarios{column-count:1}
+  .pieza.abre > p:first-of-type::first-letter{font-size:46px}
+  .cal .d{aspect-ratio:1/1; min-height:0}
+  .destacado{grid-template-columns:1fr; gap:14px}
+  .cifras{grid-template-columns:repeat(2,1fr)}
+}
+
+@media print{
+  body{background:#fff; padding:0}
+  .hoja{box-shadow:none; max-width:none}
+  .pasar,.pie-hoja{display:none}
+  figure img{filter:grayscale(1) contrast(1.1)}
+}

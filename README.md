@@ -34,10 +34,30 @@ más alto (el mayor sale primero):
 - `etiqueta` e `img` son opcionales.
 - Guarda, haz commit y `git push` → la web se actualiza sola en 1-2 minutos.
 
+## 📰 El Diario del Reino (`diario/`)
+
+**Página aparte**, no una sección de `index.html`: el periódico del Ayuntamiento, un número por
+jornada, con hemeroteca y calendario. Vive en `diario/` y tiene **su propio `diario.css`**, que no
+depende de `css/style.css` a propósito (así un retoque en la landing no puede romperlo).
+
+🔴 **NO SE EDITA AQUÍ.** Se genera desde el repo principal:
+
+```bash
+python web/diario_extraer.py --dia AAAA-MM-DD   # saca los datos de la jornada
+# escribir  web/diario/dias/<fecha>.yml
+python web/build_diario.py --auditar            # comprueba (falla si hay antirol o spoilers)
+python web/build_diario.py                      # escribe diario/ aquí
+git add diario && git commit && git push
+```
+
+Todo lo demás (la voz, qué se puede contar y qué no, la rutina) está en
+`.claude/docs/diario-del-reino.md` del repo principal.
+
 ## Imágenes
 Las capturas del juego van en `assets/img/`. La del **héroe** es `assets/img/hero.jpg` (la Torre Negra).
 Se referencian desde `index.html` / `css/style.css`.
 
 ## Notas
-- No usa ningún build ni dependencia: se abre `index.html` y ya.
+- La landing no usa ningún build ni dependencia: se abre `index.html` y ya.
+  (El `diario/` sí se genera, desde el repo principal — ver arriba.)
 - No afiliado a Mojang. Hecho con cariño y humor negro.

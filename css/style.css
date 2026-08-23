@@ -106,6 +106,18 @@ b,strong{color:#fff; font-weight:700}
   background:var(--ember); padding:5px 10px; border:2px solid var(--ember-hi);
   box-shadow:inset 2px 2px 0 rgba(255,255,255,.3), inset -2px -2px 0 rgba(0,0,0,.35)}
 
+.nav-open{background:var(--toxic); border-color:#a8e87f;
+  animation:latido 2.4s ease-in-out infinite}
+@keyframes latido{
+  0%,100%{box-shadow:inset 2px 2px 0 rgba(255,255,255,.3), inset -2px -2px 0 rgba(0,0,0,.35), 0 0 0 rgba(120,214,74,0)}
+  50%    {box-shadow:inset 2px 2px 0 rgba(255,255,255,.3), inset -2px -2px 0 rgba(0,0,0,.35), 0 0 14px rgba(120,214,74,.75)}}
+@media (prefers-reduced-motion:reduce){.nav-open{animation:none}}
+
+/* la IP, para que se pueda leer y copiar de un vistazo */
+.join-big code{font-family:var(--pixel); background:rgba(120,214,74,.10);
+  border:2px solid var(--toxic); padding:6px 14px; display:inline-block; color:#dff7cc;
+  user-select:all}
+
 /* ---------- HERO ---------- */
 .hero{position:relative; min-height:100svh; display:flex; flex-direction:column;
   align-items:center; justify-content:center; text-align:center; padding:90px 22px 60px; overflow:hidden}
