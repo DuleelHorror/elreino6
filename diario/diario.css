@@ -29,6 +29,9 @@
   --tinta-3:#7d7259;
   --filete:#b9ab8a;        /* los filetes */
   --rojo:#8f2d1c;          /* el rojo de imprenta: sellos y cabeceras */
+  --salmon:#e7c8b0;        /* el papel del SUPLEMENTO: los cuadernillos van en otro papel */
+  --salmon-hi:#f0d7c2;
+  --salmon-filete:#c39a7c;
   --arcane:#8a5cff;        /* el morado del Reino, solo para el enlace de vuelta */
 
   --pixel:'Monocraft', ui-monospace, Consolas, monospace;
@@ -158,6 +161,50 @@ figcaption .rev{
 .recuadro .pie{font-size:13px; color:var(--tinta-2); font-style:italic; margin-top:9px}
 
 /* ── EL PARTE ─────────────────────────────────────────────────────────── */
+/* ── EL ANEXO: el suplemento, en otro papel ───────────────────────────────
+   Los suplementos de los periodicos van en un papel distinto (el salmon de los de
+   economia). Aqui se hace igual: el cuadernillo se sale de los margenes de la hoja,
+   cambia de color y trae su propia mancheta, para que se lea como un REPORTAJE y no
+   como una seccion mas del boletin.
+   Un articulo entra aqui con `anexo: true`; el titular comun, en `suplemento:`. */
+.anexo{
+  margin:32px -40px 0; padding:28px 40px 30px;
+  background:var(--salmon);
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0,0,0,.016) 0 2px, transparent 2px 4px),
+    radial-gradient(120% 70% at 50% 0%, var(--salmon-hi), transparent 62%);
+  border-top:4px double var(--rojo);
+  border-bottom:4px double var(--rojo);
+}
+.anexo-cab{
+  margin:0 0 14px; text-align:center; font-family:var(--pixel);
+  font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:var(--rojo);
+  display:flex; align-items:center; gap:14px;
+}
+.anexo-cab::before,.anexo-cab::after{
+  content:""; flex:1; border-top:1px solid var(--salmon-filete);
+  border-bottom:1px solid var(--salmon-filete); height:4px;
+}
+.anexo-tit{
+  margin:0 0 8px; text-align:center; font-size:38px; line-height:1.06;
+  letter-spacing:-.015em; text-wrap:balance;
+}
+.anexo-sum{
+  margin:0 auto 4px; max-width:70ch; text-align:center; font-style:italic;
+  color:var(--tinta-2); font-size:17px;
+}
+.anexo-firma{
+  margin:10px 0 0; text-align:center; font-family:var(--pixel); font-size:10.5px;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--tinta-3);
+}
+.anexo-cuerpo{
+  margin-top:22px; padding-top:18px; border-top:1px solid var(--salmon-filete);
+  column-count:2; column-gap:34px; column-rule:1px solid var(--salmon-filete);
+}
+.anexo .kicker{border-bottom-color:var(--salmon-filete)}
+.anexo figcaption{border-left-color:var(--salmon-filete)}
+.anexo hr{border-top-color:var(--salmon-filete)}
+
 .parte{margin:26px 0 0; padding-top:14px; border-top:3px double var(--tinta)}
 .parte h3{
   font-family:var(--pixel); font-size:12px; letter-spacing:.24em; text-transform:uppercase;
@@ -323,6 +370,9 @@ figcaption .rev{
   body{padding:14px 8px 40px; font-size:16px}
   .hoja{padding:20px 18px 22px}
   .cuerpo{column-count:1}
+  .anexo{margin:24px -18px 0; padding:20px 18px 22px}
+  .anexo-tit{font-size:27px}
+  .anexo-cuerpo{column-count:1}
   .parte dl{columns:1}
   .sumarios{column-count:1}
   .pieza.abre > p:first-of-type::first-letter{font-size:46px}
