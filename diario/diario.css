@@ -33,6 +33,10 @@
   --salmon-hi:#f0d7c2;
   --salmon-filete:#c39a7c;
   --arcane:#8a5cff;        /* el morado del Reino, solo para el enlace de vuelta */
+  --cartel:#ccd8bd;        /* el papel del RECLAMO: los bandos van en verde, no en salmón */
+  --cartel-hi:#dde5d0;
+  --cartel-filete:#8d9c78;
+  --cartel-tinta:#4b2f8d;  /* el morado de los pendones del cartel */
 
   --pixel:'Monocraft', ui-monospace, Consolas, monospace;
   --serif:Georgia, 'Iowan Old Style', 'Times New Roman', Times, serif;
@@ -205,6 +209,56 @@ figcaption .rev{
 .anexo figcaption{border-left-color:var(--salmon-filete)}
 .anexo hr{border-top-color:var(--salmon-filete)}
 
+/* ── EL RECLAMO ───────────────────────────────────────────────────────────────
+   Un CARTEL pegado a mano en mitad del periodico. Va en papel VERDE (el de los bandos
+   municipales), no en el salmon del suplemento, para que se vea a la primera que es
+   otra cosa: esto no lo cuenta la Oficina de Prensa, lo PAGA alguien.
+   Va ligeramente torcido y con sombra, como una hoja pegada encima de la pagina. */
+.reclamo{
+  margin:34px 0 6px; padding:22px 26px 24px;
+  background:var(--cartel);
+  background-image:radial-gradient(120% 80% at 50% 0%, var(--cartel-hi), transparent 70%);
+  border:2px solid var(--cartel-tinta);
+  box-shadow:0 0 0 5px var(--cartel), 0 14px 34px rgba(0,0,0,.45);
+  transform:rotate(-.55deg);
+}
+.reclamo-cab{
+  margin:0 0 16px; text-align:center; font-family:var(--pixel);
+  font-size:10.5px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--cartel-tinta); display:flex; align-items:center; gap:14px;
+}
+.reclamo-cab::before,.reclamo-cab::after{
+  content:""; flex:1; border-top:1px solid var(--cartel-filete);
+  border-bottom:1px solid var(--cartel-filete); height:4px;
+}
+.reclamo-caja{display:flex; gap:26px; align-items:flex-start}
+.reclamo-img{margin:0; flex:0 0 300px}
+.reclamo-img img{
+  display:block; width:100%; height:auto;
+  border:1px solid var(--cartel-filete); filter:none;
+}
+.reclamo-img figcaption{
+  margin-top:8px; padding-left:10px; border-left:3px solid var(--cartel-tinta);
+  font-size:13px; line-height:1.45; color:var(--tinta-2); font-style:italic;
+}
+.reclamo-txt{flex:1; min-width:0}
+.reclamo-tit{
+  margin:0 0 8px; font-size:33px; line-height:1.05; letter-spacing:-.015em;
+  color:var(--cartel-tinta); text-wrap:balance;
+}
+.reclamo-sum{
+  margin:0 0 14px; font-style:italic; font-size:17px; color:var(--tinta-2);
+  padding-bottom:12px; border-bottom:1px solid var(--cartel-filete);
+}
+.reclamo-txt p{margin:0 0 10px; font-size:15.5px; line-height:1.55}
+.reclamo-txt b{color:var(--cartel-tinta)}
+.reclamo-firma{
+  margin:16px 0 0 !important; padding-top:12px;
+  border-top:1px solid var(--cartel-filete);
+  font-family:var(--pixel); font-size:10px !important; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--tinta-3); line-height:1.7 !important;
+}
+
 .parte{margin:26px 0 0; padding-top:14px; border-top:3px double var(--tinta)}
 .parte h3{
   font-family:var(--pixel); font-size:12px; letter-spacing:.24em; text-transform:uppercase;
@@ -373,6 +427,10 @@ figcaption .rev{
   .anexo{margin:24px -18px 0; padding:20px 18px 22px}
   .anexo-tit{font-size:27px}
   .anexo-cuerpo{column-count:1}
+  .reclamo{padding:18px 16px 20px; transform:none}
+  .reclamo-caja{flex-direction:column; gap:16px}
+  .reclamo-img{flex:1 1 auto; width:100%; max-width:340px; margin:0 auto}
+  .reclamo-tit{font-size:26px}
   .parte dl{columns:1}
   .sumarios{column-count:1}
   .pieza.abre > p:first-of-type::first-letter{font-size:46px}
