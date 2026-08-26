@@ -425,29 +425,82 @@ figcaption .rev{
 }
 
 /* ── EL CORAZÓN DEL REINO ─────────────────────────────────────────────
-   La sección de cotilleos. Va DENTRO del cuerpo a dos columnas (no es un
-   cuadernillo aparte como el suplemento), pero en papel rosa y con filete,
-   que es como se ha impreso siempre la prensa del corazón. Sin capitular:
-   esta sección no abre nunca el periódico.
-   La marca es `corazon: true` en el artículo. */
-.pieza.corazon{
-  background:linear-gradient(180deg,var(--rosa-hi),var(--rosa));
-  border:1px solid var(--rosa-filete);
-  border-top:4px double var(--rosa-filete);
-  border-bottom:4px double var(--rosa-filete);
-  padding:14px 16px 10px; margin-bottom:20px;
+   La sección de cotilleos, en su propio PLIEGO. Igual que el cuadernillo
+   salmón, se sale de los márgenes de la hoja y cambia de papel — pero el
+   suyo es ROSA y va SEMBRADO DE CORAZONES.
+
+   🔑 Nació metida dentro del cuerpo a dos columnas, y así NO SE VEÍA
+   (usuario, 2026-08-26: «ponle corazones y un fondo diferente pq si no no
+   se nota»). La lección es la de siempre: una sección nueva tiene que
+   distinguirse AL BAJAR LA PÁGINA, no al leerla.
+
+   El patrón del fondo es un SVG en línea (dos corazones por baldosa, uno
+   grande y otro pequeño desplazado) para no añadir una petición más ni un
+   fichero que se pueda perder. Ojo al tocarlo: dentro de un data-uri el
+   `#` del color va escrito `%23`. */
+.corazon-sec{
+  margin:32px -40px 0; padding:26px 40px 26px;
+  background-color:var(--rosa);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cpath d='M18 30.5l-1.2-1.1C12.5 25.5 9 22.9 9 19.7c0-2.6 2-4.7 4.6-4.7 1.5 0 2.9.7 3.8 1.8h1.2c.9-1.1 2.3-1.8 3.8-1.8 2.6 0 4.6 2.1 4.6 4.7 0 3.2-3.5 5.8-7.8 9.7L18 30.5z' fill='%23a8536b' fill-opacity='.13'/%3E%3Cpath d='M47 57l-.8-.7c-2.9-2.6-5.2-4.4-5.2-6.6 0-1.8 1.4-3.2 3.2-3.2 1 0 2 .5 2.6 1.2h.8c.6-.7 1.6-1.2 2.6-1.2 1.8 0 3.2 1.4 3.2 3.2 0 2.2-2.4 4-5.2 6.6L47 57z' fill='%23a8536b' fill-opacity='.10'/%3E%3C/svg%3E"),
+    radial-gradient(120% 70% at 50% 0%, var(--rosa-hi), transparent 60%);
+  border-top:4px double var(--rosa-tinta);
+  border-bottom:4px double var(--rosa-tinta);
 }
-.pieza.corazon .kicker{
+
+/* la cabecera del pliego: corazones a los lados y filete rosa */
+.corazon-cab{
+  margin:0 0 12px; text-align:center; font-family:var(--pixel);
+  font-size:11px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--rosa-tinta);
+  display:flex; align-items:center; gap:14px;
+}
+.corazon-cab::before,.corazon-cab::after{
+  content:""; flex:1; border-top:1px solid var(--rosa-filete);
+  border-bottom:1px solid var(--rosa-filete); height:4px;
+}
+.corazon-tit{
+  margin:0 0 8px; text-align:center; font-size:33px; line-height:1.08;
+  letter-spacing:-.015em; text-wrap:balance; color:var(--rosa-tinta);
+}
+.corazon-sum{
+  margin:0 auto 6px; max-width:66ch; text-align:center; font-style:italic;
+  color:var(--tinta-2); font-size:16.5px;
+}
+.corazon-firma{
+  margin:12px 0 0; text-align:center; font-family:var(--pixel); font-size:10.5px;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--rosa-tinta);
+}
+.corazon-firma::before{content:'♥ '}
+.corazon-firma::after{content:' ♥'}
+
+.corazon-cuerpo{
+  column-count:2; column-gap:34px; column-rule:1px dashed var(--rosa-filete);
+  padding-top:14px; border-top:1px solid var(--rosa-filete);
+}
+
+/* las piezas de dentro: sin caja propia (el papel ya es rosa), separadas por
+   un corazón centrado en vez de por un filete */
+.corazon-sec .pieza{margin:0 0 24px; padding:0 0 18px; position:relative}
+.corazon-sec .pieza:last-child{margin-bottom:0; padding-bottom:0}
+.corazon-sec .pieza:last-child::after{content:none}
+.corazon-sec .pieza::after{
+  content:'♥ ♥ ♥'; position:absolute; left:0; right:0; bottom:0;
+  text-align:center; font-size:11px; letter-spacing:.5em;
+  color:var(--rosa-filete);
+}
+.corazon-sec .kicker{
   color:var(--rosa-tinta); border-bottom-color:var(--rosa-filete);
 }
-.pieza.corazon .kicker::after{content:' ♥'; letter-spacing:0}
-.pieza.corazon h2{color:var(--rosa-tinta)}
-.pieza.corazon blockquote{
-  border-left-color:var(--rosa-tinta); background:rgba(140,37,69,.06);
+.corazon-sec .kicker::before{content:'♥ '; letter-spacing:0}
+.corazon-sec .kicker::after{content:' ♥'; letter-spacing:0}
+.corazon-sec .pieza h2{color:var(--rosa-tinta)}
+.corazon-sec blockquote{
+  border-left-color:var(--rosa-tinta); background:rgba(140,37,69,.07);
 }
-.pieza.corazon figcaption{border-left-color:var(--rosa-filete)}
-.pieza.corazon hr{border-top-color:var(--rosa-filete)}
-.pieza.corazon .pie{color:var(--rosa-tinta)}
+.corazon-sec figcaption{border-left-color:var(--rosa-filete)}
+.corazon-sec hr{border-top-color:var(--rosa-filete)}
+.corazon-sec .pie{color:var(--rosa-tinta)}
 
 /* ── MÓVIL ────────────────────────────────────────────────────────────── */
 @media (max-width:880px){
@@ -455,6 +508,9 @@ figcaption .rev{
   .hoja{padding:20px 18px 22px}
   .cuerpo{column-count:1}
   .anexo{margin:24px -18px 0; padding:20px 18px 22px}
+  .corazon-sec{margin:24px -18px 0; padding:20px 18px 22px}
+  .corazon-tit{font-size:25px}
+  .corazon-cuerpo{column-count:1}
   .anexo-tit{font-size:27px}
   .anexo-cuerpo{column-count:1}
   .reclamo{padding:18px 16px 20px; transform:none}
