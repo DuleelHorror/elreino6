@@ -37,6 +37,11 @@
   --cartel-hi:#dde5d0;
   --cartel-filete:#8d9c78;
   --cartel-tinta:#4b2f8d;  /* el morado de los pendones del cartel */
+  --rosa:#eccdd4;          /* el papel de EL CORAZON DEL REINO: la prensa del corazon
+                              se imprime en rosa, y aqui tambien */
+  --rosa-hi:#f6dde3;
+  --rosa-filete:#c08a99;
+  --rosa-tinta:#8c2545;
 
   --pixel:'Monocraft', ui-monospace, Consolas, monospace;
   --serif:Georgia, 'Iowan Old Style', 'Times New Roman', Times, serif;
@@ -418,6 +423,31 @@ figcaption .rev{
   float:right; font-style:normal; font-size:10px; letter-spacing:.16em; color:var(--tinta-3);
   font-weight:400;
 }
+
+/* ── EL CORAZÓN DEL REINO ─────────────────────────────────────────────
+   La sección de cotilleos. Va DENTRO del cuerpo a dos columnas (no es un
+   cuadernillo aparte como el suplemento), pero en papel rosa y con filete,
+   que es como se ha impreso siempre la prensa del corazón. Sin capitular:
+   esta sección no abre nunca el periódico.
+   La marca es `corazon: true` en el artículo. */
+.pieza.corazon{
+  background:linear-gradient(180deg,var(--rosa-hi),var(--rosa));
+  border:1px solid var(--rosa-filete);
+  border-top:4px double var(--rosa-filete);
+  border-bottom:4px double var(--rosa-filete);
+  padding:14px 16px 10px; margin-bottom:20px;
+}
+.pieza.corazon .kicker{
+  color:var(--rosa-tinta); border-bottom-color:var(--rosa-filete);
+}
+.pieza.corazon .kicker::after{content:' ♥'; letter-spacing:0}
+.pieza.corazon h2{color:var(--rosa-tinta)}
+.pieza.corazon blockquote{
+  border-left-color:var(--rosa-tinta); background:rgba(140,37,69,.06);
+}
+.pieza.corazon figcaption{border-left-color:var(--rosa-filete)}
+.pieza.corazon hr{border-top-color:var(--rosa-filete)}
+.pieza.corazon .pie{color:var(--rosa-tinta)}
 
 /* ── MÓVIL ────────────────────────────────────────────────────────────── */
 @media (max-width:880px){
