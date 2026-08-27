@@ -42,6 +42,10 @@
   --rosa-hi:#f6dde3;
   --rosa-filete:#c08a99;
   --rosa-tinta:#8c2545;
+  --manila:#ddd0ae;        /* el papel del PLIEGO DE SUCESOS: carpeta de archivo */
+  --manila-hi:#e9dfc4;
+  --manila-filete:#a8946a;
+  --manila-tinta:#7a2018;  /* el rojo oscuro del sello y los filetes */
 
   --pixel:'Monocraft', ui-monospace, Consolas, monospace;
   --serif:Georgia, 'Iowan Old Style', 'Times New Roman', Times, serif;
@@ -424,6 +428,81 @@ figcaption .rev{
   font-weight:400;
 }
 
+/* ── EL PLIEGO DE SUCESOS ─────────────────────────────────────────────
+   El sumario del día, en papel de EXPEDIENTE: carpeta manila, filete rojo
+   oscuro y un sello torcido. Se sale de los márgenes igual que el salmón y
+   el rosa, porque nació del mismo problema — la investigación del robo de
+   los seis animales iba dentro del cuerpo a dos columnas y no se
+   distinguía de una noticia cualquiera.
+   La marca es `sucesos: true` en el artículo. */
+.sucesos-sec{
+  position:relative;
+  margin:32px -40px 0; padding:26px 40px 24px;
+  background-color:var(--manila);
+  background-image:
+    repeating-linear-gradient(0deg, rgba(0,0,0,.02) 0 2px, transparent 2px 5px),
+    radial-gradient(130% 80% at 50% 0%, var(--manila-hi), transparent 65%);
+  border-top:4px double var(--manila-tinta);
+  border-bottom:4px double var(--manila-tinta);
+}
+.sucesos-cab{
+  margin:0 0 10px; text-align:center; font-family:var(--pixel);
+  font-size:11px; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--manila-tinta);
+  display:flex; align-items:center; gap:14px;
+}
+.sucesos-cab::before,.sucesos-cab::after{
+  content:""; flex:1; border-top:1px solid var(--manila-filete);
+  border-bottom:1px solid var(--manila-filete); height:4px;
+}
+.sucesos-tit{
+  margin:0 0 6px; text-align:center; font-size:30px; line-height:1.1;
+  letter-spacing:-.01em; text-wrap:balance; color:var(--manila-tinta);
+}
+
+/* el sello: torcido, con doble borde rojo, como el de un expediente */
+.sucesos-sello{
+  margin:0 auto 14px; width:max-content;
+  padding:5px 16px; transform:rotate(-4deg);
+  font-family:var(--pixel); font-size:11px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--manila-tinta);
+  border:2px solid var(--manila-tinta); outline:1px solid var(--manila-tinta);
+  outline-offset:2px; opacity:.72;
+}
+
+.sucesos-cuerpo{
+  column-count:2; column-gap:34px; column-rule:1px solid var(--manila-filete);
+  padding-top:14px; border-top:1px solid var(--manila-filete);
+}
+.sucesos-firma{
+  margin:12px 0 0; text-align:center; font-family:var(--pixel); font-size:10.5px;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--manila-tinta);
+}
+
+.sucesos-sec .pieza{margin:0 0 22px; padding:0 0 16px; position:relative}
+.sucesos-sec .pieza:last-child{margin-bottom:0; padding-bottom:0}
+.sucesos-sec .pieza:last-child::after{content:none}
+.sucesos-sec .pieza::after{
+  content:''; position:absolute; left:0; right:0; bottom:0;
+  border-top:1px dashed var(--manila-filete);
+}
+.sucesos-sec .kicker{
+  color:var(--manila-tinta); border-bottom-color:var(--manila-filete);
+}
+.sucesos-sec .pieza h2{color:var(--manila-tinta)}
+.sucesos-sec blockquote{
+  border-left-color:var(--manila-tinta); background:rgba(122,32,24,.06);
+}
+.sucesos-sec figcaption{border-left-color:var(--manila-filete)}
+.sucesos-sec hr{border-top-color:var(--manila-filete)}
+.sucesos-sec .pie{color:var(--manila-tinta)}
+/* la tabla de presencias: monoespaciada, que se lea como un listado */
+.sucesos-sec .reg{
+  font-family:var(--pixel); font-size:11.5px; line-height:1.9;
+  margin:8px 0 12px; text-align:left;
+}
+.sucesos-sec .reg b{color:var(--manila-tinta)}
+
 /* ── EL CORAZÓN DEL REINO ─────────────────────────────────────────────
    La sección de cotilleos, en su propio PLIEGO. Igual que el cuadernillo
    salmón, se sale de los márgenes de la hoja y cambia de papel — pero el
@@ -509,6 +588,9 @@ figcaption .rev{
   .cuerpo{column-count:1}
   .anexo{margin:24px -18px 0; padding:20px 18px 22px}
   .corazon-sec{margin:24px -18px 0; padding:20px 18px 22px}
+  .sucesos-sec{margin:24px -18px 0; padding:20px 18px 22px}
+  .sucesos-tit{font-size:23px}
+  .sucesos-cuerpo{column-count:1}
   .corazon-tit{font-size:25px}
   .corazon-cuerpo{column-count:1}
   .anexo-tit{font-size:27px}
