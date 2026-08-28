@@ -47,6 +47,18 @@
   --manila-filete:#a8946a;
   --manila-tinta:#7a2018;  /* el rojo oscuro del sello y los filetes */
 
+  --imperial:#0b0906;      /* EL PLIEGO IMPERIAL: el unico "papel" que no es papel. Va en
+                              negro y oro para que rompa con todo lo demas y no se pueda
+                              pasar de largo (encargo del usuario: "que se note") */
+  --oro:#c9a227;
+  --oro-hi:#f0d97a;
+  --oro-filete:#7a6317;
+  --cuadricula:#dfe3d8;    /* EL PLIEGO DE ESTADISTICA: papel cuadriculado de negociado.
+                              Un papel distinto dice "esto son numeros" antes de leer nada */
+  --cuadricula-hi:#eceee6;
+  --cuadricula-filete:#9aa48f;
+  --cuadricula-tinta:#2b4a63;
+
   --pixel:'Monocraft', ui-monospace, Consolas, monospace;
   --serif:Georgia, 'Iowan Old Style', 'Times New Roman', Times, serif;
   --hoja:1160px;
@@ -146,6 +158,17 @@ figure img{
   transition:filter .35s ease;
 }
 figure:hover img{filter:none}
+figure img.ampliable{cursor:zoom-in}
+
+/* 🔴🔴 EL GRIS ES UN GAG DE ESCRITORIO, Y EN EL MOVIL DEJABA EL PERIODICO EN BLANCO Y NEGRO.
+   Las fotos salen desaturadas "como sacadas del Archivo Municipal" y se revelaban al pasar
+   el raton. En una pantalla tactil NO HAY raton: quien entraba desde el telefono no revelaba
+   ninguna, nunca, y no lo cantaba ningun auditor (un auditor comprueba lo que se ESCRIBE, no
+   lo que se VE). Donde no hay hover, la foto va en color desde el principio. (2026-08-28) */
+@media (hover:none){
+  figure img{filter:none}
+  figcaption .rev{display:none}
+}
 figcaption{
   font-size:13px; line-height:1.4; font-style:italic; color:var(--tinta-2);
   margin-top:5px; padding-left:8px; border-left:2px solid var(--filete);
@@ -581,7 +604,329 @@ figcaption .rev{
 .corazon-sec hr{border-top-color:var(--rosa-filete)}
 .corazon-sec .pie{color:var(--rosa-tinta)}
 
-/* ── MÓVIL ────────────────────────────────────────────────────────────── */
+/* ── EL PLIEGO IMPERIAL: «LO QUE DICE EL EMPERADOR» ───────────────────────────
+   Encargo del usuario (2026-08-28): una sección exclusiva y RESALTADA donde se
+   analiza lo que dice el Emperador, siempre en clave de adulación.
+
+   🎨 Es el único bloque del Diario que NO es papel: negro con orla de oro. Eso es
+   deliberado — los otros pliegos (salmón, verde, rosa, manila) se distinguen entre
+   sí pero todos son prensa; éste tiene que leerse como otra COSA, algo que el
+   Ayuntamiento imprime aparte y con dinero que no es suyo. Se sale de los márgenes
+   de la hoja igual que el cuadernillo, para que corte la lectura por la mitad. */
+.imperial{
+  margin:36px -40px 0; padding:30px 40px 28px;
+  background-color:var(--imperial);
+  background-image:
+    radial-gradient(120% 80% at 50% 0%, rgba(201,162,39,.16), transparent 62%),
+    repeating-linear-gradient(45deg, rgba(201,162,39,.045) 0 2px, transparent 2px 9px);
+  border-top:4px double var(--oro);
+  border-bottom:4px double var(--oro);
+  color:var(--oro-hi);
+  box-shadow:inset 0 0 0 1px rgba(201,162,39,.35), inset 0 0 60px rgba(0,0,0,.7);
+}
+.imp-cab{
+  margin:0 0 14px; text-align:center; font-family:var(--pixel);
+  font-size:10.5px; letter-spacing:.28em; text-transform:uppercase; color:var(--oro);
+  display:flex; align-items:center; gap:14px;
+}
+.imp-cab::before,.imp-cab::after{
+  content:""; flex:1; border-top:1px solid var(--oro-filete);
+  border-bottom:1px solid var(--oro-filete); height:4px;
+}
+.imp-tit{
+  margin:0 0 4px; text-align:center; font-size:40px; line-height:1.03;
+  letter-spacing:.01em; text-wrap:balance; color:var(--oro-hi);
+  text-shadow:0 1px 0 #000, 0 0 26px rgba(201,162,39,.30);
+}
+.imp-lema{
+  margin:0 0 16px; text-align:center; font-family:var(--pixel); font-size:9.5px;
+  letter-spacing:.24em; text-transform:uppercase; color:var(--oro-filete);
+}
+.imp-sum{
+  margin:0 auto 20px; max-width:68ch; text-align:center; font-style:italic;
+  font-size:17px; color:#d9c68e;
+  padding-bottom:16px; border-bottom:1px solid var(--oro-filete);
+}
+.imp-retrato{margin:0 auto 20px; max-width:280px}
+.imp-retrato img{
+  border:1px solid var(--oro); padding:5px; background:#15110a; filter:sepia(.35);
+}
+.imp-retrato figcaption{
+  color:#bda86d; border-left-color:var(--oro-filete); text-align:left;
+}
+.imp-cuerpo{display:grid; gap:26px}
+.imp-pieza{
+  border:1px solid var(--oro-filete); padding:20px 24px 14px;
+  background:rgba(201,162,39,.045);
+}
+/* la cita, que es lo que la gente va a leer: grande y con comillas de imprenta */
+.imp-cita{
+  margin:0; padding:0 0 0 8px; border:0; background:none;
+  font-size:26px; line-height:1.28; font-style:italic; color:#fff6dc;
+  text-wrap:balance;
+}
+.imp-cita::before{content:'\201C'; color:var(--oro); font-size:1.1em; margin-right:.06em}
+.imp-cita::after{content:'\201D'; color:var(--oro); font-size:1.1em; margin-left:.04em}
+.imp-firma-cita{
+  margin:8px 0 16px; text-align:right; font-family:var(--pixel); font-size:10px;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--oro);
+}
+.imp-ctx,.imp-lectura{
+  margin:0 0 10px; font-size:16px; line-height:1.55; color:#cdb987;
+}
+.imp-lectura{color:#e6d3a0}
+.imp-ctx span,.imp-lectura span{
+  display:block; font-family:var(--pixel); font-size:9px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--oro-filete); margin-bottom:3px;
+}
+.imp-estrellas{
+  margin:12px 0 0; text-align:center; color:var(--oro); font-size:12px;
+  letter-spacing:.6em;
+}
+.imp-firma{
+  margin:20px 0 0; text-align:center; font-family:var(--pixel); font-size:10px;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--oro-filete);
+}
+.imp-firma::before{content:'\2726  '}
+.imp-firma::after{content:'  \2726'}
+
+/* ── EL PLIEGO DE ESTADÍSTICA: EL ESCALAFÓN ───────────────────────────────────
+   Papel CUADRICULADO de negociado. La cuadrícula no es decoración: dice «esto son
+   números» antes de que se lea una sola cifra, igual que el rosa dice «cotilleos». */
+.esc-sec{
+  margin:32px -40px 0; padding:26px 40px 26px;
+  background-color:var(--cuadricula);
+  background-image:
+    linear-gradient(rgba(43,74,99,.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(43,74,99,.10) 1px, transparent 1px),
+    radial-gradient(120% 70% at 50% 0%, var(--cuadricula-hi), transparent 65%);
+  background-size:22px 22px, 22px 22px, auto;
+  border-top:3px solid var(--cuadricula-tinta);
+  border-bottom:3px solid var(--cuadricula-tinta);
+}
+.esc-cab{
+  margin:0 0 12px; text-align:center; font-family:var(--pixel);
+  font-size:10.5px; letter-spacing:.22em; text-transform:uppercase;
+  color:var(--cuadricula-tinta); display:flex; align-items:center; gap:14px;
+}
+.esc-cab::before,.esc-cab::after{
+  content:""; flex:1; border-top:1px solid var(--cuadricula-filete);
+  border-bottom:1px solid var(--cuadricula-filete); height:4px;
+}
+.esc-tit{
+  margin:0 0 8px; text-align:center; font-size:33px; line-height:1.06;
+  letter-spacing:-.015em; text-wrap:balance; color:var(--cuadricula-tinta);
+}
+.esc-sum{
+  margin:0 auto 18px; max-width:68ch; text-align:center; font-style:italic;
+  color:var(--tinta-2); font-size:16.5px;
+}
+.esc-firma{
+  margin:16px 0 0; text-align:center; font-family:var(--pixel); font-size:10px;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--cuadricula-tinta);
+}
+.esc-nota{
+  margin:16px auto 0; max-width:76ch; font-size:13.5px; line-height:1.5;
+  color:var(--tinta-2); font-style:italic; text-align:center;
+  padding-top:10px; border-top:1px dashed var(--cuadricula-filete);
+}
+.esc-mas{margin:16px 0 0; text-align:center}
+.esc-mas a{
+  font-family:var(--pixel); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--cuadricula-tinta); border-bottom:2px solid var(--cuadricula-tinta);
+  padding-bottom:2px; text-decoration:none;
+}
+.esc-mas a:hover{background:rgba(43,74,99,.10)}
+
+/* EL PODIO: es tipografía, no un dibujo. Tres fichas, la primera en rojo de imprenta. */
+.podio{
+  list-style:none; margin:0 0 20px; padding:0;
+  display:grid; grid-template-columns:repeat(3,1fr); gap:12px;
+}
+.podio li{
+  border:1px solid var(--cuadricula-filete); background:rgba(255,255,255,.42);
+  padding:12px 14px; text-align:center;
+}
+.podio li.p1{border-color:var(--rojo); border-width:2px}
+.podio .pue{
+  display:block; font-family:var(--pixel); font-size:9px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--tinta-3); margin-bottom:4px;
+}
+.podio .p1 .pue{color:var(--rojo)}
+.podio .nom{
+  display:block; font-size:19px; line-height:1.15; font-weight:700;
+  word-break:break-word;
+}
+.podio .val{display:block; margin-top:4px; font-size:26px; color:var(--cuadricula-tinta)}
+.podio .p1 .val{color:var(--rojo)}
+.podio .val em{
+  font-style:normal; font-size:12px; color:var(--tinta-3); margin-left:3px;
+}
+
+/* las cuatro cifras de la jornada */
+.esc-cifras{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px; margin:0 0 20px;
+  background:var(--cuadricula-filete); border:1px solid var(--cuadricula-filete);
+}
+.esc-cifra{background:rgba(255,255,255,.42); padding:12px 8px; text-align:center}
+.esc-cifra b{
+  display:block; font-size:30px; line-height:1; color:var(--cuadricula-tinta);
+  font-variant-numeric:tabular-nums;
+}
+.esc-cifra span{
+  display:block; margin-top:5px; font-family:var(--pixel); font-size:9px;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--tinta-3);
+}
+
+/* LAS PESTAÑAS */
+.esc-tabs{
+  display:flex; flex-wrap:wrap; gap:0; margin:0 0 -1px;
+  border-bottom:1px solid var(--cuadricula-filete);
+}
+.esc-tabs button{
+  font-family:var(--pixel); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
+  padding:10px 16px; min-height:44px; cursor:pointer;
+  background:transparent; color:var(--tinta-2);
+  border:1px solid transparent; border-bottom:0; border-radius:0;
+}
+.esc-tabs button:hover{background:rgba(43,74,99,.07)}
+.esc-tabs button.activa{
+  background:rgba(255,255,255,.55); color:var(--cuadricula-tinta);
+  border-color:var(--cuadricula-filete); font-weight:700;
+}
+.esc-panel{
+  border:1px solid var(--cuadricula-filete); background:rgba(255,255,255,.42);
+  padding:16px 18px 18px;
+}
+.esc-h{
+  margin:0 0 12px; font-family:var(--pixel); font-size:10.5px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--tinta-3);
+  padding-bottom:7px; border-bottom:1px solid var(--cuadricula-filete);
+}
+
+/* ── LAS GRÁFICAS ─────────────────────────────────────────────────────────────
+   El SVG lo escribe `web/diario_graficas.py`. Aquí solo va la tipografía: el dibujo
+   trae sus colores puestos, porque un SVG dentro del HTML no hereda `var()` de forma
+   fiable en los atributos de presentación. */
+.graf{width:100%; height:auto; display:block; overflow:visible}
+.gr-et{font-family:var(--serif); font-size:13px; fill:var(--tinta)}
+.gr-num{font-family:var(--pixel); font-size:11px; fill:var(--tinta-2)}
+.gr-eje{font-family:var(--pixel); font-size:9px; fill:var(--tinta-3)}
+.graf .barra:hover rect:last-of-type{opacity:.82}
+.graf .col:hover{opacity:.75}
+.graf-vacia{margin:0; font-style:italic; color:var(--tinta-3); font-size:15px}
+.spark{width:92px; height:22px}
+.gr-aviso{
+  position:fixed; z-index:60; pointer-events:none; opacity:0; transition:opacity .12s;
+  background:var(--tinta); color:var(--papel-hi); padding:5px 9px;
+  font-family:var(--pixel); font-size:10.5px; letter-spacing:.06em;
+  box-shadow:0 4px 14px rgba(0,0,0,.4); max-width:60vw;
+}
+.gr-aviso.visible{opacity:1}
+
+/* ── LA TABLA DEL CENSO ───────────────────────────────────────────────────────
+   Es además la «vista de tabla» que hace que el dato no dependa de saber leer una
+   gráfica: aquí están TODOS los vecinos, no solo los doce primeros. */
+.esc-tabla-caja{overflow-x:auto; -webkit-overflow-scrolling:touch}
+.esc-tabla{
+  width:100%; border-collapse:collapse; font-size:15px;
+  background:rgba(255,255,255,.35);
+}
+.esc-tabla th,.esc-tabla td{
+  padding:8px 10px; text-align:right; border-bottom:1px solid var(--filete);
+  white-space:nowrap;
+}
+.esc-tabla th{
+  font-family:var(--pixel); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--tinta-2); border-bottom:2px solid var(--tinta); cursor:pointer;
+  position:sticky; top:0; background:var(--papel-hi); height:44px;
+}
+.esc-tabla th:hover{background:var(--papel)}
+.esc-tabla th[data-orden]::after{content:' \25BE'; color:var(--rojo)}
+.esc-tabla th[data-orden="asc"]::after{content:' \25B4'; color:var(--rojo)}
+.esc-tabla td.tv,.esc-tabla th:first-child{text-align:left; font-weight:700}
+.esc-tabla td.tm{
+  text-align:left; font-style:italic; color:var(--tinta-2); font-size:13.5px;
+  white-space:normal;
+}
+.esc-tabla td.ts{text-align:center; padding:4px 10px}
+.esc-tabla tbody tr:hover{background:rgba(143,45,28,.06)}
+
+.esc-doble{display:grid; grid-template-columns:1fr 1fr; gap:22px; margin-bottom:8px}
+.esc-pie-nota{
+  margin:22px 0 0; font-size:13px; font-style:italic; color:var(--tinta-3);
+  text-align:center;
+}
+.hoja-esc .secc{margin-top:34px}
+
+/* el enlace desde la hemeroteca */
+.esc-enlace{
+  display:block; margin:22px 0 6px; padding:20px 24px; text-decoration:none;
+  background-color:var(--cuadricula);
+  background-image:
+    linear-gradient(rgba(43,74,99,.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(43,74,99,.10) 1px, transparent 1px);
+  background-size:22px 22px;
+  border:2px solid var(--cuadricula-tinta);
+  box-shadow:4px 4px 0 rgba(0,0,0,.18);
+}
+.esc-enlace:hover{box-shadow:6px 6px 0 rgba(0,0,0,.24)}
+.esc-enlace .et{
+  display:block; font-family:var(--pixel); font-size:9.5px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--cuadricula-tinta); margin-bottom:6px;
+}
+.esc-enlace .ti{display:block; font-size:28px; line-height:1.08; margin-bottom:6px}
+.esc-enlace .su{display:block; font-size:16px; color:var(--tinta-2); max-width:70ch}
+.esc-enlace .cta{
+  display:inline-block; margin-top:10px; font-family:var(--pixel); font-size:10.5px;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--cuadricula-tinta);
+  border-bottom:2px solid var(--cuadricula-tinta); padding-bottom:2px;
+}
+
+/* ── EL VISOR DE FOTOS ────────────────────────────────────────────────────────
+   🔴 Esto no es un lujo: es lo que hace que las fotos se puedan VER en un móvil
+   (ver el comentario del `@media (hover:none)` de arriba). Se abre en color y a
+   pantalla completa, se cierra con Esc o tocando el fondo, y se pasa de una a otra
+   con las flechas o deslizando el dedo. Lo mueve `diario.js`. */
+body.con-visor{overflow:hidden}
+.visor{
+  position:fixed; inset:0; z-index:100; display:none;
+  align-items:center; justify-content:center; padding:28px 16px;
+  background:rgba(5,4,8,.94);
+}
+.visor.abierto{display:flex}
+.visor-marco{
+  margin:0; max-width:1100px; max-height:100%;
+  display:flex; flex-direction:column; align-items:center; gap:10px;
+}
+.visor-marco img{
+  max-width:100%; max-height:78vh; width:auto; object-fit:contain;
+  border:1px solid var(--filete); padding:5px; background:var(--papel);
+  filter:none;                      /* en el visor SIEMPRE en color */
+}
+.visor-marco figcaption{
+  color:var(--papel); font-size:15px; line-height:1.45; font-style:italic;
+  text-align:center; max-width:78ch; border:0; padding:0;
+}
+.visor button{
+  position:absolute; background:rgba(232,223,201,.10); color:var(--papel-hi);
+  border:1px solid rgba(232,223,201,.35); cursor:pointer;
+  font-size:26px; line-height:1; width:52px; height:52px;
+}
+.visor button:hover{background:rgba(232,223,201,.22)}
+.visor-x{top:16px; right:16px; font-size:30px}
+.visor-ant{left:14px; top:50%; transform:translateY(-50%)}
+.visor-sig{right:14px; top:50%; transform:translateY(-50%)}
+
+/* ── TABLETA Y MÓVIL ──────────────────────────────────────────────────────────
+   Hay DOS cortes, y no es lo mismo uno que otro:
+     · 880 px — cae la segunda columna. El periódico sigue siendo un periódico.
+     · 560 px — el teléfono. Aquí manda no tener NADA que se salga de ancho, que
+       es como se estropea de verdad una página larga: un solo elemento tieso
+       (una tabla, una gráfica con `width` fijo) y toda la lectura se descuadra.
+   🔴 Y ojo con los pliegos que «se salen de los márgenes» (el salmón, el rosa, el
+   manila, el imperial y el cuadriculado): su margen negativo tiene que ir SIEMPRE
+   igualado al `padding` de `.hoja`, o asoman por el lado y aparece scroll lateral. */
 @media (max-width:880px){
   body{padding:14px 8px 40px; font-size:16px}
   .hoja{padding:20px 18px 22px}
@@ -589,12 +934,19 @@ figcaption .rev{
   .anexo{margin:24px -18px 0; padding:20px 18px 22px}
   .corazon-sec{margin:24px -18px 0; padding:20px 18px 22px}
   .sucesos-sec{margin:24px -18px 0; padding:20px 18px 22px}
+  .imperial{margin:24px -18px 0; padding:22px 18px 22px}
+  .esc-sec{margin:24px -18px 0; padding:22px 18px 22px}
   .sucesos-tit{font-size:23px}
   .sucesos-cuerpo{column-count:1}
   .corazon-tit{font-size:25px}
   .corazon-cuerpo{column-count:1}
   .anexo-tit{font-size:27px}
   .anexo-cuerpo{column-count:1}
+  .imp-tit{font-size:29px}
+  .imp-cita{font-size:21px}
+  .imp-pieza{padding:16px 16px 12px}
+  .esc-tit{font-size:25px}
+  .esc-doble{grid-template-columns:1fr; gap:18px}
   .reclamo{padding:18px 16px 20px; transform:none}
   .reclamo-caja{flex-direction:column; gap:16px}
   .reclamo-img{flex:1 1 auto; width:100%; max-width:340px; margin:0 auto}
@@ -605,11 +957,97 @@ figcaption .rev{
   .cal .d{aspect-ratio:1/1; min-height:0}
   .destacado{grid-template-columns:1fr; gap:14px}
   .cifras{grid-template-columns:repeat(2,1fr)}
+  .esc-enlace .ti{font-size:23px}
+}
+
+/* ── EL TELÉFONO ─────────────────────────────────────────────────────────────
+   Encargo del usuario (2026-08-28): «que esté preparado para responsive por si
+   consultan con el móvil». Lo que se arregla aquí:
+     · la mancheta y los titulares en tamaño FLUIDO (`clamp`), que a 390 px un
+       titular de 44 px se parte en seis líneas y se come la pantalla;
+     · la tira de la cabecera se apila en vez de estirarse;
+     · el podio pasa a UNA columna: tres fichas a 110 px no se leen;
+     · las cifras, de cuatro a dos;
+     · botones y pestañas con 44 px de alto, que es el dedo;
+     · y NADA de scroll horizontal: la tabla del censo se desplaza sola dentro de
+       su caja, no arrastrando la página entera. */
+@media (max-width:560px){
+  body{padding:8px 6px 30px; font-size:16px}
+  .hoja{padding:16px 12px 18px}
+  .mancheta h1{font-size:clamp(30px, 12vw, 52px)}
+  .titular{font-size:clamp(26px, 8.4vw, 40px); max-width:none}
+  .sumario,.intro{font-size:16px}
+  .tira{flex-direction:column; gap:3px; text-align:center}
+
+  .anexo,.corazon-sec,.sucesos-sec,.imperial,.esc-sec{
+    margin-left:-12px; margin-right:-12px; padding-left:12px; padding-right:12px;
+  }
+  .imp-tit{font-size:clamp(22px, 7.6vw, 30px)}
+  .imp-cita{font-size:19px}
+  .imp-sum,.esc-sum{font-size:15.5px}
+  .esc-tit{font-size:clamp(20px, 7vw, 26px)}
+
+  .podio{grid-template-columns:1fr; gap:8px}
+  .podio li{display:flex; align-items:baseline; gap:10px; text-align:left}
+  .podio .pue{margin:0; flex:0 0 62px}
+  .podio .nom{flex:1; font-size:17px}
+  .podio .val{margin:0; font-size:22px}
+
+  .esc-cifras{grid-template-columns:repeat(2,1fr)}
+  .esc-cifra b{font-size:25px}
+  .esc-tabs{border-bottom:0; gap:4px}
+  .esc-tabs button{flex:1 1 44%; padding:10px 8px; font-size:9.5px}
+  .esc-panel{padding:12px 12px 14px}
+  /* 🔴 EL SVG ENCOGE, Y CON ÉL SU LETRA. La gráfica se dibuja en un lienzo de 560 unidades y
+     en un móvil se muestra a 390: todo queda al 70 %, incluidos los nombres, que se van de
+     13 px a 9 y no hay quien los lea. Como las medidas de dentro del SVG son unidades de ese
+     lienzo y no píxeles de pantalla, se suben aquí para que, ya encogidas, salgan al tamaño
+     que tenían. No es un capricho de tamaño: una barra sin su nombre legible no es un dato. */
+  .gr-et{font-size:18px}
+  .gr-num{font-size:15px}
+  .gr-eje{font-size:13px}
+
+  .esc-tabla{font-size:14px}
+  .esc-tabla th,.esc-tabla td{padding:7px 8px}
+  .esc-tabla td.tm{font-size:12.5px}
+
+  .cifras{grid-template-columns:repeat(2,1fr)}
+  .cal{gap:3px}
+  .esc-enlace{padding:16px 14px}
+  .esc-enlace .ti{font-size:21px}
+
+  /* 🔴 EL PARTE ERA EL QUE SE SALÍA. `.parte .fila dt` lleva `white-space:nowrap` para que
+     la etiqueta y sus puntitos queden en una línea, y en una pantalla de 390 px una etiqueta
+     como «Reuniones de la Comisión de Estudio del Subsuelo Rentable» no cabe NI DE LEJOS:
+     como está dentro de un flex, no encoge — empuja, y se lleva por delante el ancho de TODA
+     la página. El titular salía cortado por la derecha y no era culpa del titular.
+     📌 La lección general: para saber si algo se sale en el móvil no vale mirar el elemento
+     que se ve mal, hay que buscar el que EMPUJA, que suele estar en otro sitio de la página. */
+     En el teléfono la fila se APILA: la etiqueta arriba y la cifra debajo. Se probó primero
+     dejando las dos en la misma línea y volvió a salirse, esta vez por la cifra («NARUMl, 12 —
+     más que los cinco siguientes juntos» son 43 px de más). Los puntitos se quitan: unen dos
+     cosas que ya no están una enfrente de otra. */
+  .parte .fila{flex-wrap:wrap; margin-bottom:10px}
+  .parte .fila dt{white-space:normal; flex:1 1 100%; min-width:0}
+  .parte .fila .puntos{display:none}
+  .parte .fila dd{flex:1 1 100%; text-align:left; padding-left:0}
+
+  /* el dedo necesita sitio: pasar de número y las flechas del visor */
+  .pasar a,.pasar span{min-height:44px; display:flex; align-items:center}
+  .visor{padding:14px 8px}
+  .visor button{width:46px; height:46px}
+  .visor-ant{left:6px}
+  .visor-sig{right:6px}
+  .visor-marco img{max-height:70vh}
 }
 
 @media print{
   body{background:#fff; padding:0}
   .hoja{box-shadow:none; max-width:none}
-  .pasar,.pie-hoja{display:none}
+  .pasar,.pie-hoja,.esc-tabs,.visor{display:none}
+  .esc-panel{display:block !important}
   figure img{filter:grayscale(1) contrast(1.1)}
+  /* el pliego imperial en papel: el negro se come el tóner y no se lee */
+  .imperial{background:#fff; color:#000; border-color:#000}
+  .imp-tit,.imp-cita,.imp-lectura,.imp-ctx{color:#000}
 }
