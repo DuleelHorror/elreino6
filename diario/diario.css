@@ -173,6 +173,20 @@ figcaption{
   font-size:13px; line-height:1.4; font-style:italic; color:var(--tinta-2);
   margin-top:5px; padding-left:8px; border-left:2px solid var(--filete);
 }
+
+/* ── LA GALERÍA ───────────────────────────────────────────────────────────────
+   Varias fotos en una misma pieza, cuando lo que cuentan es una SECUENCIA (el ghast:
+   el bloque en la charca, el nacimiento, la cría dentro de casa, el animal montado).
+   Con una sola foto eso no se cuenta. Va a dos columnas dentro del cuerpo del
+   periódico, y a una sola en el cuadernillo y en el móvil. */
+.galeria{
+  display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:14px 0 4px;
+  break-inside:avoid;
+}
+.galeria figure{margin:0}
+.galeria figcaption{font-size:12px; line-height:1.35}
+.anexo-cuerpo .galeria{grid-template-columns:1fr 1fr}
+
 figcaption .rev{
   display:block; font-family:var(--pixel); font-style:normal; font-size:9px;
   letter-spacing:.18em; text-transform:uppercase; color:var(--tinta-3); margin-top:4px;
@@ -1006,6 +1020,8 @@ body.con-visor{overflow:hidden}
   .gr-et{font-size:18px}
   .gr-num{font-size:15px}
   .gr-eje{font-size:13px}
+
+  .galeria{grid-template-columns:1fr; gap:10px}
 
   .esc-tabla{font-size:14px}
   .esc-tabla th,.esc-tabla td{padding:7px 8px}
