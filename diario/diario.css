@@ -59,6 +59,15 @@
   --cuadricula-filete:#9aa48f;
   --cuadricula-tinta:#2b4a63;
 
+  --diva:#d8e3e8;          /* EL DIVAN DEL REINO: el papel del gabinete. Azul clinico
+                              palido, el de las carpetas de un consultorio — el sexto papel
+                              del Diario, y tenia que distinguirse de los otros cinco de un
+                              vistazo (encargo del usuario, 2026-08-29) */
+  --diva-hi:#e9f1f4;
+  --diva-filete:#8ea7b4;
+  --diva-tinta:#1d4657;    /* azul petroleo: la tinta del informe */
+  --diva-mancha:rgba(29,70,87,.10);   /* la mancha del test, de fondo */
+
   --pixel:'Monocraft', ui-monospace, Consolas, monospace;
   --serif:Georgia, 'Iowan Old Style', 'Times New Roman', Times, serif;
   --hoja:1160px;
@@ -540,6 +549,121 @@ figcaption .rev{
 }
 .sucesos-sec .reg b{color:var(--manila-tinta)}
 
+/* ── EL DIVÁN DEL REINO ──────────────────────────────────
+   El sexto papel del Diario (encargo del usuario, 2026-08-29): un informe de
+   gabinete. Azul clínico pálido, con la MANCHA SIMÉTRICA del test de fondo, y
+   cada vecino en su ficha, con su sello de diagnóstico y sus escalas.
+   Va FUERA de `articulos` (bloque `psicoanalisis:`), como el imperial: si le
+   añades campos, súmalos a `trozos` en `auditar()` de `build_diario.py`. */
+.diva-sec{
+  position:relative;
+  margin:32px -40px 0; padding:26px 40px 26px;
+  background-color:var(--diva);
+  background-image:
+    radial-gradient(38% 26% at 34% 16%, var(--diva-mancha), transparent 62%),
+    radial-gradient(38% 26% at 66% 16%, var(--diva-mancha), transparent 62%),
+    radial-gradient(20% 30% at 42% 40%, var(--diva-mancha), transparent 66%),
+    radial-gradient(20% 30% at 58% 40%, var(--diva-mancha), transparent 66%),
+    repeating-linear-gradient(0deg, rgba(29,70,87,.035) 0 1px, transparent 1px 26px),
+    radial-gradient(120% 70% at 50% 0%, var(--diva-hi), transparent 70%);
+  border-top:3px solid var(--diva-tinta);
+  border-bottom:3px solid var(--diva-tinta);
+}
+.diva-cab{
+  margin:0 0 10px; text-align:center; font-family:var(--pixel);
+  font-size:11px; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--diva-tinta); display:flex; align-items:center; gap:14px;
+}
+.diva-cab::before,.diva-cab::after{
+  content:""; flex:1; border-top:1px solid var(--diva-filete);
+}
+.diva-tit{
+  margin:0 0 4px; text-align:center; font-size:31px; line-height:1.1;
+  letter-spacing:-.01em; text-wrap:balance; color:var(--diva-tinta);
+}
+.diva-lema{
+  margin:0 0 12px; text-align:center; font-family:var(--pixel); font-size:10.5px;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--diva-tinta); opacity:.75;
+}
+.diva-sum{
+  margin:0 auto 18px; max-width:70ch; text-align:center; font-style:italic;
+  color:var(--diva-tinta); padding-bottom:14px;
+  border-bottom:1px solid var(--diva-filete);
+}
+.diva-cuerpo{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:16px;
+}
+/* la ficha: una carpeta de consulta, con su pestaña arriba */
+.diva-ficha{
+  position:relative; background:rgba(255,255,255,.42);
+  border:1px solid var(--diva-filete); border-left:4px solid var(--diva-tinta);
+  padding:16px 18px 14px;
+}
+.diva-quien{
+  margin:0; font-family:var(--pixel); font-size:15px; letter-spacing:.04em;
+  color:var(--diva-tinta);
+}
+.diva-signo{
+  margin:2px 0 0; font-size:13px; letter-spacing:.16em; text-transform:uppercase;
+  font-family:var(--pixel); color:var(--diva-tinta); opacity:.8;
+}
+/* La cabecera de la ficha: nombre+signo a la izquierda y el SELLO a la derecha,
+   los dos en la MISMA fila. 🔴 El sello estuvo `position:absolute` y con una etiqueta
+   larga se montaba encima de la cita — se vio en la captura, no en el auditor. */
+.diva-cabf{display:flex; align-items:flex-start; justify-content:space-between; gap:12px}
+.diva-cabf > div{min-width:0}
+/* el sello del diagnóstico, torcido como el del expediente */
+.diva-etiq{
+  flex:0 0 auto; max-width:46%; margin:2px 4px 0 0;
+  padding:3px 9px; transform:rotate(-3deg);
+  font-family:var(--pixel); font-size:9.5px; letter-spacing:.12em;
+  text-transform:uppercase; text-align:center; line-height:1.55;
+  color:var(--diva-tinta); border:1.5px solid var(--diva-tinta);
+  outline:1px solid var(--diva-tinta); outline-offset:2px; opacity:.72;
+}
+.diva-cita{
+  margin:12px 0 10px; padding:6px 0 6px 12px; font-style:italic; font-size:16px;
+  border-left:3px solid var(--diva-tinta); background:rgba(29,70,87,.05);
+}
+.diva-cita span{
+  display:block; font-style:normal; font-family:var(--pixel); font-size:10px;
+  letter-spacing:.14em; text-transform:uppercase; opacity:.7; margin-top:5px;
+}
+.diva-ap{
+  margin:12px 0 4px; font-family:var(--pixel); font-size:10px; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--diva-tinta); opacity:.8;
+  border-bottom:1px solid var(--diva-filete); padding-bottom:3px;
+}
+.diva-ficha p{margin:0 0 8px; font-size:16px}
+.diva-ficha p:last-child{margin-bottom:0}
+/* las escalas: barra de negociado, con su cifra escrita al lado */
+.diva-esc{margin:12px 0 0}
+.diva-esc .fila{
+  display:grid; grid-template-columns:1fr 96px 34px; align-items:center;
+  gap:8px; font-family:var(--pixel); font-size:10.5px; letter-spacing:.06em;
+  color:var(--diva-tinta); margin-bottom:4px;
+}
+.diva-esc .bar{height:9px; background:rgba(29,70,87,.14); border:1px solid var(--diva-filete)}
+.diva-esc .bar i{display:block; height:100%; background:var(--diva-tinta)}
+.diva-esc .num{text-align:right}
+.diva-pron{
+  margin:12px 0 0; padding:9px 12px; font-style:italic;
+  border:1px dashed var(--diva-filete); background:rgba(255,255,255,.35);
+}
+.diva-pron b{
+  display:block; font-style:normal; font-family:var(--pixel); font-size:9.5px;
+  letter-spacing:.18em; text-transform:uppercase; opacity:.75; margin-bottom:3px;
+}
+.diva-nota{
+  margin:18px auto 0; max-width:78ch; text-align:center; font-size:14.5px;
+  color:var(--diva-tinta); opacity:.85; padding-top:12px;
+  border-top:1px solid var(--diva-filete);
+}
+.diva-firma{
+  margin:10px 0 0; text-align:center; font-family:var(--pixel); font-size:10.5px;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--diva-tinta);
+}
+
 /* ── EL CORAZÓN DEL REINO ─────────────────────────────────────────────
    La sección de cotilleos, en su propio PLIEGO. Igual que el cuadernillo
    salmón, se sale de los márgenes de la hoja y cambia de papel — pero el
@@ -949,6 +1073,9 @@ body.con-visor{overflow:hidden}
   .corazon-sec{margin:24px -18px 0; padding:20px 18px 22px}
   .sucesos-sec{margin:24px -18px 0; padding:20px 18px 22px}
   .imperial{margin:24px -18px 0; padding:22px 18px 22px}
+  .diva-sec{margin:24px -18px 0; padding:22px 18px 22px}
+  .diva-cuerpo{grid-template-columns:1fr}
+  .diva-tit{font-size:25px}
   .esc-sec{margin:24px -18px 0; padding:22px 18px 22px}
   .sucesos-tit{font-size:23px}
   .sucesos-cuerpo{column-count:1}
@@ -993,10 +1120,13 @@ body.con-visor{overflow:hidden}
   .sumario,.intro{font-size:16px}
   .tira{flex-direction:column; gap:3px; text-align:center}
 
-  .anexo,.corazon-sec,.sucesos-sec,.imperial,.esc-sec{
+  .anexo,.corazon-sec,.sucesos-sec,.imperial,.esc-sec,.diva-sec{
     margin-left:-12px; margin-right:-12px; padding-left:12px; padding-right:12px;
   }
   .imp-tit{font-size:clamp(22px, 7.6vw, 30px)}
+  .diva-tit{font-size:clamp(21px, 7.2vw, 28px)}
+  .diva-cabf{flex-direction:column; gap:6px}
+  .diva-etiq{max-width:none; margin:0; transform:none; align-self:flex-start}
   .imp-cita{font-size:19px}
   .imp-sum,.esc-sum{font-size:15.5px}
   .esc-tit{font-size:clamp(20px, 7vw, 26px)}
