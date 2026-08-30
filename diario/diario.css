@@ -68,6 +68,14 @@
   --diva-tinta:#1d4657;    /* azul petroleo: la tinta del informe */
   --diva-mancha:rgba(29,70,87,.10);   /* la mancha del test, de fondo */
 
+  --domi:#ded7e8;          /* EL DOMINICAL: el septimo papel. Malva de HUECOGRABADO, que es
+                              con lo que se imprimian los suplementos del domingo — y ademas es
+                              el unico hueco de color que quedaba libre entre los otros seis
+                              (encargo del usuario, 2026-08-30) */
+  --domi-hi:#efe9f5;
+  --domi-filete:#a294bb;
+  --domi-tinta:#3d2a63;    /* morado de imprenta: la tinta del suplemento */
+
   --pixel:'Monocraft', ui-monospace, Consolas, monospace;
   --serif:Georgia, 'Iowan Old Style', 'Times New Roman', Times, serif;
   --hoja:1160px;
@@ -549,6 +557,159 @@ figcaption .rev{
 }
 .sucesos-sec .reg b{color:var(--manila-tinta)}
 
+/* ── EL DOMINICAL ─────────────────────────────────────────
+   El séptimo papel (encargo del usuario, 2026-08-30): el repaso de la semana, y
+   solo los domingos. Malva de huecograbado, que es como se impriman los
+   suplementos dominicales de verdad, con la mancheta a toda anchura y una
+   cronología a la izquierda. Va FUERA de `articulos` (bloque `dominical:`). */
+.domi-sec{
+  position:relative;
+  margin:32px -40px 0; padding:28px 40px 26px;
+  background-color:var(--domi);
+  background-image:
+    repeating-linear-gradient(90deg, rgba(61,42,99,.03) 0 1px, transparent 1px 3px),
+    radial-gradient(120% 70% at 50% 0%, var(--domi-hi), transparent 72%);
+  border-top:6px double var(--domi-tinta);
+  border-bottom:6px double var(--domi-tinta);
+}
+.domi-cab{
+  margin:0 0 4px; text-align:center; font-family:var(--pixel);
+  font-size:11px; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--domi-tinta); opacity:.85;
+}
+.domi-tit{
+  margin:0 0 2px; text-align:center; font-size:44px; line-height:.98;
+  letter-spacing:-.02em; color:var(--domi-tinta); text-wrap:balance;
+}
+.domi-lema{
+  margin:0 0 16px; text-align:center; font-family:var(--pixel); font-size:10.5px;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--domi-tinta); opacity:.7;
+  padding-bottom:14px; border-bottom:1px solid var(--domi-filete);
+}
+.domi-sum{
+  margin:0 auto 20px; max-width:74ch; text-align:center; font-style:italic;
+  font-size:17.5px; color:var(--domi-tinta);
+}
+/* el cuerpo: cronologia a la izquierda, bloques a la derecha */
+.domi-cuerpo{display:grid; grid-template-columns:minmax(0,340px) minmax(0,1fr); gap:30px}
+.domi-crono{margin:0; padding:0; list-style:none;
+  border-right:1px solid var(--domi-filete); padding-right:26px}
+.domi-crono h3,.domi-bloques h3{
+  margin:0 0 12px; font-family:var(--pixel); font-size:11px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--domi-tinta);
+  border-bottom:2px solid var(--domi-tinta); padding-bottom:5px;
+}
+.domi-crono li{margin:0 0 13px; padding:0 0 0 14px; position:relative}
+.domi-crono li::before{
+  content:''; position:absolute; left:0; top:9px; width:6px; height:6px;
+  background:var(--domi-tinta);
+}
+.domi-crono .d{
+  display:block; font-family:var(--pixel); font-size:10px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--domi-tinta); opacity:.75;
+}
+.domi-crono .t{display:block; font-size:15.5px; line-height:1.4}
+.domi-crono .t b{color:var(--domi-tinta)}
+.domi-bloques p{margin:0 0 10px}
+.domi-bloque{margin:0 0 18px}
+.domi-bloque h4{
+  margin:0 0 6px; font-size:21px; line-height:1.15; color:var(--domi-tinta);
+}
+/* la tabla de la semana: concepto, antes, ahora */
+.domi-cifras{width:100%; border-collapse:collapse; margin:6px 0 18px; font-size:15px}
+.domi-cifras th{
+  font-family:var(--pixel); font-size:10px; letter-spacing:.16em; text-transform:uppercase;
+  text-align:right; padding:0 0 6px; color:var(--domi-tinta); opacity:.8;
+  border-bottom:1px solid var(--domi-filete);
+}
+.domi-cifras th:first-child{text-align:left}
+.domi-cifras td{padding:5px 0; border-bottom:1px dotted var(--domi-filete); text-align:right}
+.domi-cifras td:first-child{text-align:left}
+.domi-cifras td b{color:var(--domi-tinta)}
+.domi-abierto{
+  margin:16px 0 0; padding:14px 18px; background:rgba(255,255,255,.42);
+  border-left:4px solid var(--domi-tinta);
+}
+.domi-abierto ul{margin:6px 0 0; padding-left:18px}
+.domi-abierto li{margin:0 0 5px}
+/* ── EL DOMINICAL, PLEGADO Y DESPLEGABLE ────────────────────────
+   Encargo del usuario (2026-08-30): que esté plegado y se despliegue al pulsarlo,
+   «como un diario o un panfleto». Sin librerías: `rotateX` con perspectiva para
+   el pliegue y `grid-template-rows: 0fr -> 1fr` para la altura, que es lo único
+   que anima un alto automático sin medirlo con JS.
+   🔴 El HTML sale DESPLEGADO y lo pliega el script. Sin JS se lee entero. */
+
+/* la tapa: solo existe cuando el pliego es plegable (si no hay JS, no se ve) */
+.domi-tapa{display:none}
+.domi-sec.plegable .domi-tapa{
+  display:block; width:100%; margin:0; padding:26px 18px 22px;
+  background:transparent; border:0; cursor:pointer; text-align:center;
+  font-family:inherit; color:var(--domi-tinta);
+  position:relative;
+}
+.domi-sec.plegable .domi-tapa::after{
+  content:'[ + ]  Pulse para desplegar el suplemento';
+  display:block; margin-top:10px;
+  font-family:var(--pixel); font-size:10px; letter-spacing:.18em;
+  text-transform:uppercase; opacity:.72;
+}
+.domi-sec.plegable:not(.plegado) .domi-tapa::after{
+  content:'[ 3 ]  Pulse para plegarlo';
+}
+.domi-tapa .tt{
+  display:block; font-family:var(--serif); font-size:31px; line-height:1.05;
+  letter-spacing:-.01em;
+}
+.domi-tapa .st{
+  display:block; margin-top:5px; font-family:var(--pixel); font-size:10px;
+  letter-spacing:.2em; text-transform:uppercase; opacity:.8;
+}
+/* las marcas del doblez: dos pliegues verticales, como un panfleto de tres cuerpos */
+.domi-sec.plegable.plegado{
+  background-image:
+    linear-gradient(90deg, transparent calc(33.33% - 1px), rgba(61,42,99,.16) 33.33%,
+                    transparent calc(33.33% + 1px)),
+    linear-gradient(90deg, transparent calc(66.66% - 1px), rgba(61,42,99,.16) 66.66%,
+                    transparent calc(66.66% + 1px)),
+    repeating-linear-gradient(90deg, rgba(61,42,99,.03) 0 1px, transparent 1px 3px),
+    radial-gradient(120% 70% at 50% 0%, var(--domi-hi), transparent 72%);
+  box-shadow:inset 0 -16px 24px -16px rgba(61,42,99,.4),
+             inset 0 16px 24px -16px rgba(61,42,99,.22);
+}
+
+/* el envoltorio: lo que se abre. `0fr -> 1fr` anima el alto sin medirlo */
+.domi-sec.plegable .domi-envoltorio{
+  display:grid; grid-template-rows:1fr;
+  transition:grid-template-rows .62s cubic-bezier(.22,.75,.24,1);
+}
+.domi-sec.plegable.plegado .domi-envoltorio{grid-template-rows:0fr}
+.domi-sec.plegable .domi-hoja{
+  overflow:hidden; min-height:0;
+  transform-origin:top center; perspective:1800px;
+}
+/* y el pliegue en sí: la hoja cae hacia el lector como se abre un panfleto */
+.domi-sec.plegable .domi-hoja > *{
+  transform-origin:top center;
+  transition:transform .62s cubic-bezier(.22,.75,.24,1), opacity .42s ease .12s;
+  transform:rotateX(0deg); opacity:1;
+}
+.domi-sec.plegable.plegado .domi-hoja > *{
+  transform:rotateX(-88deg) translateY(-6px); opacity:0;
+  transition:transform .5s cubic-bezier(.5,0,.75,.3), opacity .3s ease;
+}
+/* a quien le moleste el movimiento, se le abre y se le cierra sin acrobacias */
+@media (prefers-reduced-motion: reduce){
+  .domi-sec.plegable .domi-envoltorio,
+  .domi-sec.plegable .domi-hoja > *{transition:none}
+  .domi-sec.plegable.plegado .domi-hoja > *{transform:none}
+}
+
+.domi-firma{
+  margin:18px 0 0; text-align:center; font-family:var(--pixel); font-size:10.5px;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--domi-tinta);
+  padding-top:12px; border-top:1px solid var(--domi-filete);
+}
+
 /* ── EL DIVÁN DEL REINO ──────────────────────────────────
    El sexto papel del Diario (encargo del usuario, 2026-08-29): un informe de
    gabinete. Azul clínico pálido, con la MANCHA SIMÉTRICA del test de fondo, y
@@ -650,7 +811,7 @@ figcaption .rev{
   margin:12px 0 0; padding:9px 12px; font-style:italic;
   border:1px dashed var(--diva-filete); background:rgba(255,255,255,.35);
 }
-.diva-pron b{
+.diva-pron > b:first-child{
   display:block; font-style:normal; font-family:var(--pixel); font-size:9.5px;
   letter-spacing:.18em; text-transform:uppercase; opacity:.75; margin-bottom:3px;
 }
@@ -1074,6 +1235,11 @@ body.con-visor{overflow:hidden}
   .sucesos-sec{margin:24px -18px 0; padding:20px 18px 22px}
   .imperial{margin:24px -18px 0; padding:22px 18px 22px}
   .diva-sec{margin:24px -18px 0; padding:22px 18px 22px}
+  .domi-sec{margin:24px -18px 0; padding:22px 18px 22px}
+  .domi-cuerpo{grid-template-columns:1fr; gap:20px}
+  .domi-crono{border-right:0; border-bottom:1px solid var(--domi-filete);
+    padding-right:0; padding-bottom:16px}
+  .domi-tit{font-size:32px}
   .diva-cuerpo{grid-template-columns:1fr}
   .diva-tit{font-size:25px}
   .esc-sec{margin:24px -18px 0; padding:22px 18px 22px}
@@ -1120,11 +1286,13 @@ body.con-visor{overflow:hidden}
   .sumario,.intro{font-size:16px}
   .tira{flex-direction:column; gap:3px; text-align:center}
 
-  .anexo,.corazon-sec,.sucesos-sec,.imperial,.esc-sec,.diva-sec{
+  .anexo,.corazon-sec,.sucesos-sec,.imperial,.esc-sec,.diva-sec,.domi-sec{
     margin-left:-12px; margin-right:-12px; padding-left:12px; padding-right:12px;
   }
   .imp-tit{font-size:clamp(22px, 7.6vw, 30px)}
   .diva-tit{font-size:clamp(21px, 7.2vw, 28px)}
+  .domi-tit{font-size:clamp(26px, 9vw, 34px)}
+  .domi-cifras{font-size:14px}
   .diva-cabf{flex-direction:column; gap:6px}
   .diva-etiq{max-width:none; margin:0; transform:none; align-self:flex-start}
   .imp-cita{font-size:19px}

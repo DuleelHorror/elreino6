@@ -238,7 +238,46 @@
     for (var i = 0; i < nodos.length; i++) obs.observe(nodos[i]);
   }
 
+  /* ── EL DOMINICAL PLEGADO ─────────────────────────────────────
+     Encargo del usuario (2026-08-30): que el Dominical este PLEGADO y se despliegue al
+     pulsarlo, «como un diario o un panfleto».
+
+     🔑 SIN NINGUNA LIBRERIA. No hace falta: son transformaciones 3D del navegador y un
+        `grid-template-rows: 0fr -> 1fr`, que anima la altura sin medir nada a mano. Y el
+        Diario no enlaza CDNs a proposito (misma razon que las graficas: tiene que verse
+        aunque no cargue nada de fuera).
+
+     🔴 EL ORDEN IMPORTA: el HTML sale SIEMPRE DESPLEGADO y es este script el que lo
+        pliega al arrancar. Al reves —plegado en el HTML y desplegando con JS— quien
+        entrara sin JS se encontraria el repaso de la semana invisible y sin forma de
+        abrirlo. Es la misma trampa que las fotos en blanco y negro del movil: lo que
+        depende del navegador tiene que degradar hacia VISIBLE. */
+  function prepararPliegos() {
+    var secs = document.querySelectorAll("[data-plegable]");
+    for (var i = 0; i < secs.length; i++) {
+      (function (sec) {
+        var tapa = sec.querySelector(".domi-tapa");
+        if (!tapa) return;
+        sec.classList.add("plegable", "plegado");
+        tapa.setAttribute("aria-expanded", "false");
+
+        function alternar() {
+          var abierto = !sec.classList.contains("plegado");
+          sec.classList.toggle("plegado", abierto);
+          tapa.setAttribute("aria-expanded", abierto ? "false" : "true");
+          /* al plegarlo desde abajo, la cabecera se queda fuera de pantalla: se sube */
+          if (abierto) {
+            var y = sec.getBoundingClientRect().top;
+            if (y < 0) sec.scrollIntoView({ block: "start", behavior: "smooth" });
+          }
+        }
+        tapa.addEventListener("click", alternar);
+      })(secs[i]);
+    }
+  }
+
   function arrancar() {
+    prepararPliegos();
     prepararFotos();
     prepararPestanas();
     prepararGraficas();
