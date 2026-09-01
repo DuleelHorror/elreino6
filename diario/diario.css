@@ -76,6 +76,16 @@
   --domi-filete:#a294bb;
   --domi-tinta:#3d2a63;    /* morado de imprenta: la tinta del suplemento */
 
+  --luto:#e3e0d8;          /* LA ESQUELA: el octavo papel, y el unico que NO tiene color.
+                              Una esquela de verdad se imprime en blanco sucio con una ORLA
+                              NEGRA muy gruesa, y ese marco es toda su identidad: se reconoce
+                              desde el otro lado de la pagina sin leer una palabra. Aqui hace
+                              falta justo eso, porque va entre pliegos de colores.
+                              Sale los MARTES (calendario de pliegos, 2026-09-01) */
+  --luto-hi:#eeece5;
+  --luto-filete:#8d8a82;
+  --luto-tinta:#0d0d0d;    /* negro de luto, mas negro que la tinta del periodico */
+
   --pixel:'Monocraft', ui-monospace, Consolas, monospace;
   --serif:Georgia, 'Iowan Old Style', 'Times New Roman', Times, serif;
   --hoja:1160px;
@@ -903,6 +913,84 @@ figcaption .rev{
 .corazon-sec hr{border-top-color:var(--rosa-filete)}
 .corazon-sec .pie{color:var(--rosa-tinta)}
 
+/* ── LA ESQUELA: el obituario de la jornada ───────────────────────────────────
+   Octavo papel, y sale los MARTES (§EL CALENDARIO DE PLIEGOS, 2026-09-01). La marca
+   es `esquela: true` en el artículo, o sea que sus piezas viven DENTRO de
+   `articulos` y el auditor las mira solo — el patrón bueno, el del corazón y el de
+   sucesos, y no el de `suplemento:`/`reclamo:`, que viven fuera y hay que acordarse
+   de sumarlos a mano en dos sitios.
+
+   🎨 Es el único pliego SIN color: blanco sucio y una ORLA NEGRA gruesa, que es lo
+   que identifica una esquela de verdad antes de leer una sola palabra. Entre seis
+   pliegos de colores, la ausencia de color es lo que más resalta.
+   🔴 Y va a UNA columna a propósito: una esquela no se lee en corrido, se lee de una
+   pieza, y a dos columnas se confundiría con el cuerpo del periódico. */
+.esquela-sec{
+  margin:32px -40px 0; padding:24px 40px 26px;
+  background-color:var(--luto);
+  background-image:radial-gradient(120% 70% at 50% 0%, var(--luto-hi), transparent 62%);
+  border-top:14px solid var(--luto-tinta);
+  border-bottom:14px solid var(--luto-tinta);
+}
+.esquela-cab{
+  margin:0 0 12px; text-align:center; font-family:var(--pixel);
+  font-size:11px; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--luto-tinta);
+  display:flex; align-items:center; gap:14px;
+}
+.esquela-cab::before,.esquela-cab::after{
+  content:""; flex:1; border-top:3px solid var(--luto-tinta);
+}
+.esquela-tit{
+  margin:0 0 6px; text-align:center; font-size:32px; line-height:1.08;
+  letter-spacing:-.015em; text-wrap:balance; color:var(--luto-tinta);
+}
+.esquela-sum{
+  margin:0 auto 4px; max-width:64ch; text-align:center; font-style:italic;
+  color:var(--tinta-2); font-size:16.5px;
+}
+.esquela-firma{
+  margin:16px 0 0; text-align:center; font-family:var(--pixel); font-size:10.5px;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--luto-tinta);
+}
+.esquela-firma::before{content:'† '}
+.esquela-firma::after{content:' †'}
+
+.esquela-cuerpo{padding-top:16px; border-top:3px solid var(--luto-tinta)}
+
+/* cada difunto, en su recuadro de orla negra — la tarjeta mortuoria */
+.esquela-sec .pieza{
+  margin:0 auto 22px; max-width:74ch; padding:18px 24px 16px;
+  background:var(--luto-hi);
+  border:5px solid var(--luto-tinta);
+  outline:1px solid var(--luto-tinta); outline-offset:4px;
+  text-align:center;
+}
+.esquela-sec .pieza:last-child{margin-bottom:0}
+/* la cruz que corona la tarjeta. 🔴 El kicker de estas piezas dice «LA ESQUELA» porque su
+   `seccion:` es lo que el calendario de pliegos casa (CALENDARIO_SEC), y no se puede cambiar
+   en el YAML sin que el pliego deje de contar como el del martes. Pero repetirlo en cada
+   tarjeta, debajo de un titular que ya dice LA ESQUELA, es ruido: se oculta el texto y se
+   deja solo la cruz, que es lo que de verdad marca una esquela. */
+.esquela-sec .pieza .kicker{
+  display:block; text-align:center; border:0; margin:0 0 6px;
+  color:var(--luto-tinta); font-size:0;
+}
+.esquela-sec .pieza .kicker::before{content:'✝'; font-size:17px; letter-spacing:0}
+.esquela-sec .pieza h2{
+  color:var(--luto-tinta); font-size:27px; margin:0 0 10px;
+}
+.esquela-sec .pieza p{text-align:center}
+.esquela-sec blockquote{
+  border-left:0; border-top:1px solid var(--luto-filete);
+  border-bottom:1px solid var(--luto-filete);
+  background:transparent; text-align:center; margin:12px auto; padding:10px 6px;
+}
+.esquela-sec figcaption{border-left-color:var(--luto-filete); text-align:left}
+.esquela-sec hr{border-top-color:var(--luto-filete)}
+.esquela-sec .pie{color:var(--luto-tinta)}
+.esquela-sec .rk{text-align:left}
+
 /* ── EL PLIEGO IMPERIAL: «LO QUE DICE EL EMPERADOR» ───────────────────────────
    Encargo del usuario (2026-08-28): una sección exclusiva y RESALTADA donde se
    analiza lo que dice el Emperador, siempre en clave de adulación.
@@ -1243,6 +1331,10 @@ body.con-visor{overflow:hidden}
   .diva-cuerpo{grid-template-columns:1fr}
   .diva-tit{font-size:25px}
   .esc-sec{margin:24px -18px 0; padding:22px 18px 22px}
+  .esquela-sec{margin:24px -18px 0; padding:20px 18px 22px; border-width:10px}
+  .esquela-tit{font-size:25px}
+  .esquela-sec .pieza{padding:14px 14px 12px; outline-offset:3px}
+  .esquela-sec .pieza h2{font-size:22px}
   .sucesos-tit{font-size:23px}
   .sucesos-cuerpo{column-count:1}
   .corazon-tit{font-size:25px}
