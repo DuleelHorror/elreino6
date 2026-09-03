@@ -86,6 +86,17 @@
   --luto-filete:#8d8a82;
   --luto-tinta:#0d0d0d;    /* negro de luto, mas negro que la tinta del periodico */
 
+  --comi:#9db4d6;          /* LA COMISARIA DEL REINO: el papel del cuerpo de vecinos. Azul de
+                              UNIFORME, no azul de consulta — tenia que distinguirse del DIVAN
+                              (#d8e3e8) DE UN VISTAZO, y el Divan es palido y cian: este es mas
+                              oscuro, mas saturado y tira a violeta. Decimo papel del Diario.
+                              (encargo del usuario, 2026-09-03: «fondo azul y una estrella como
+                              de policia, para la investigacion y todo lo que hay») */
+  --comi-hi:#b9cbe6;
+  --comi-filete:#5d7bab;
+  --comi-tinta:#11224b;    /* azul de uniforme: la tinta de la Comisaria */
+  --comi-placa:rgba(17,34,75,.12);   /* la estrella de fondo, en marca de agua */
+
   --pixel:'Monocraft', ui-monospace, Consolas, monospace;
   --serif:Georgia, 'Iowan Old Style', 'Times New Roman', Times, serif;
   --hoja:1160px;
@@ -566,6 +577,203 @@ figcaption .rev{
   margin:8px 0 12px; text-align:left;
 }
 .sucesos-sec .reg b{color:var(--manila-tinta)}
+
+/* ── LA COMISARIA DEL REINO ───────────────────────────────
+   El cuerpo de investigacion de LOS VECINOS, que no es la oficina: el manila
+   (`.sucesos-sec`) es el Negociado estableciendo lo que consta; esto es la gente
+   de la calle persiguiendo un caso que la autoridad les remitio a ellos.
+   Papel AZUL DE UNIFORME, sembrado de estrellas de siete puntas.
+
+   🔴 El azul ya estaba cogido por EL DIVAN (#d8e3e8, azul clinico palido). Este es
+   OTRO azul a proposito: mas oscuro, mas saturado y hacia el violeta. Si los pones
+   juntos se tienen que distinguir BAJANDO la pagina, no leyendolos.
+   🔴 La estrella NO se hace con la entidad de la estrella de cinco puntas: ese glifo
+   es la puntuacion del pliego imperial. Va en SVG en linea, como los corazones del
+   pliego rosa — sin peticion extra y sin fichero que se pueda perder. Dentro de un
+   data-uri el `#` de un color se escribe `%23`.
+   🔑 PATRON HIBRIDO: la PROSA va en `articulos` con `pesquisa: true` (y asi la audita
+   sola el auditor y `copiar_fotos()` se lleva sus fotos); la ESTRUCTURA —caso,
+   agentes, cronologia, coartadas— va en el bloque `comisaria:`, FUERA de `articulos`,
+   y por eso sus campos estan sumados A MANO a `trozos` en `auditar()`. */
+.comi-sec{
+  position:relative;
+  margin:32px -40px 0; padding:26px 40px 24px;
+  background-color:var(--comi);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%2311224b' stroke-opacity='.10'%3E%3Ccircle cx='20' cy='20' r='15.5' stroke-width='1.6'/%3E%3Ccircle cx='52' cy='52' r='9.6' stroke-width='1.1'/%3E%3C/g%3E%3Cpath d='M20 7 L22.73 14.32 L30.16 11.89 L26.14 18.6 L32.67 22.89 L24.93 23.93 L25.64 31.71 L20 26.3 L14.36 31.71 L15.07 23.93 L7.33 22.89 L13.86 18.6 L9.84 11.89 L17.27 14.32 Z' fill='%2311224b' fill-opacity='.12'/%3E%3Cpath d='M52 44 L53.69 48.49 L58.25 47.01 L55.8 51.13 L59.8 53.78 L55.05 54.43 L55.47 59.21 L52 55.9 L48.53 59.21 L48.95 54.43 L44.2 53.78 L48.2 51.13 L45.75 47.01 L50.31 48.49 Z' fill='%2311224b' fill-opacity='.09'/%3E%3C/svg%3E"),
+    radial-gradient(125% 75% at 50% 0%, var(--comi-hi), transparent 68%);
+  border-top:4px double var(--comi-tinta);
+  border-bottom:4px double var(--comi-tinta);
+}
+.comi-cab{
+  margin:0 0 10px; text-align:center; font-family:var(--pixel);
+  font-size:11px; letter-spacing:.24em; text-transform:uppercase;
+  color:var(--comi-tinta); display:flex; align-items:center; gap:14px;
+}
+.comi-cab::before,.comi-cab::after{
+  content:""; flex:1; border-top:1px solid var(--comi-filete);
+  border-bottom:1px solid var(--comi-filete); height:4px;
+}
+.comi-tit{
+  margin:0 0 4px; text-align:center; font-size:31px; line-height:1.1;
+  letter-spacing:-.01em; text-wrap:balance; color:var(--comi-tinta);
+}
+.comi-lema{
+  margin:0 0 14px; text-align:center; font-family:var(--pixel); font-size:10.5px;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--comi-tinta); opacity:.78;
+}
+/* 🔴 la entradilla va en `--comi-tinta` y NO en `--tinta-2`: sobre este azul,
+   `--tinta-2` se queda en 4.76:1 y en cursiva pequena no se lee. */
+.comi-sum{
+  margin:0 auto 18px; max-width:70ch; text-align:center; font-style:italic;
+  color:var(--comi-tinta); padding-bottom:14px;
+  border-bottom:1px solid var(--comi-filete);
+}
+
+/* LA PLACA: la estrella de SIETE puntas con su cerco, en solido. Es un fondo y no
+   una imagen a proposito: no anade peticion, no se puede perder y no necesita `alt`
+   porque el nombre del caso esta escrito justo al lado. */
+.comi-caso{
+  display:flex; align-items:center; gap:20px;
+  background:rgba(255,255,255,.46); border:1px solid var(--comi-filete);
+  border-left:5px solid var(--comi-tinta);
+  padding:16px 20px; margin:0 0 18px;
+}
+.comi-placa{
+  flex:0 0 76px; width:76px; height:76px; align-self:flex-start;
+  background:center/contain no-repeat
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%2311224b'/%3E%3Ccircle cx='50' cy='50' r='40' fill='none' stroke='%23b9cbe6' stroke-width='1.6'/%3E%3Cpath d='M50 16 L57.16 35.13 L76.58 28.8 L66.09 46.33 L83.15 57.57 L62.9 60.29 L64.75 80.63 L50 66.5 L35.25 80.63 L37.1 60.29 L16.85 57.57 L33.91 46.33 L23.42 28.8 L42.84 35.13 Z' fill='%23b9cbe6'/%3E%3Ccircle cx='50' cy='50' r='9' fill='%2311224b'/%3E%3C/svg%3E");
+}
+.comi-caso > div{min-width:0; flex:1}
+.comi-exp{
+  margin:0 0 3px; font-family:var(--pixel); font-size:10px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--comi-tinta); opacity:.75;
+}
+.comi-nombre{
+  margin:0 0 6px; font-size:25px; line-height:1.12; color:var(--comi-tinta);
+  letter-spacing:-.01em; text-wrap:balance;
+}
+.comi-caso p:last-child{margin-bottom:0}
+/* el sello del estado del caso, torcido como el del expediente manila */
+.comi-estado{
+  flex:0 0 auto; align-self:flex-start; width:max-content; margin:2px 0 0;
+  padding:5px 14px; transform:rotate(-4deg);
+  font-family:var(--pixel); font-size:10.5px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--comi-tinta);
+  border:2px solid var(--comi-tinta); outline:1px solid var(--comi-tinta);
+  outline-offset:2px; opacity:.75;
+}
+
+.comi-ap{
+  margin:18px 0 8px; font-family:var(--pixel); font-size:10px; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--comi-tinta);
+  border-bottom:1px solid var(--comi-filete); padding-bottom:4px;
+}
+
+/* LOS AGENTES: quien es y QUIEN LO AVALA, que es el dato que hace de esto un cuerpo
+   y no una lista de nombres. La estrellita de cada ficha es la misma placa reducida. */
+.comi-agentes{
+  list-style:none; margin:0; padding:0;
+  display:grid; grid-template-columns:repeat(2,1fr); gap:10px;
+}
+.comi-agentes li{
+  display:flex; align-items:flex-start; gap:11px;
+  background:rgba(255,255,255,.40); border:1px solid var(--comi-filete);
+  padding:10px 13px;
+}
+.comi-agentes li::before{
+  content:""; flex:0 0 22px; height:22px; margin-top:1px;
+  background:center/contain no-repeat
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='29' fill='none' stroke='%2311224b' stroke-width='3'/%3E%3Cpath d='M32 11 L36.43 22.81 L48.42 18.91 L41.94 29.73 L52.47 36.67 L39.97 38.36 L41.11 50.92 L32 42.2 L22.89 50.92 L24.03 38.36 L11.53 36.67 L22.06 29.73 L15.58 18.91 L27.57 22.81 Z' fill='%2311224b'/%3E%3C/svg%3E");
+}
+.comi-agentes .q{
+  display:block; font-family:var(--pixel); font-size:14px; letter-spacing:.03em;
+  color:var(--comi-tinta);
+}
+.comi-agentes .c{
+  display:block; font-family:var(--pixel); font-size:9.5px; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--comi-tinta); opacity:.72; margin-top:2px;
+}
+.comi-agentes .av{display:block; font-size:14.5px; font-style:italic; margin-top:5px}
+.comi-agentes .av b{font-style:normal; color:var(--comi-tinta)}
+
+/* LA CRONOLOGIA: hora a la izquierda en monoespaciada, hecho a la derecha. */
+.comi-crono{list-style:none; margin:0; padding:0}
+.comi-crono li{
+  display:grid; grid-template-columns:64px 1fr; gap:12px;
+  padding:7px 0; border-bottom:1px dashed var(--comi-filete);
+}
+.comi-crono li:last-child{border-bottom:0}
+.comi-crono .h{
+  font-family:var(--pixel); font-size:12.5px; color:var(--comi-tinta);
+  letter-spacing:.04em; padding-top:2px;
+}
+.comi-crono .t{font-size:16px}
+
+/* LA TABLA DE COARTADAS. 🔴 Va dentro de una caja con `overflow-x:auto`: en el
+   telefono se desplaza ELLA y no arrastra la pagina entera. Cuatro columnas con
+   nombres largos no encogen dentro del flujo y se llevan por delante el ancho. */
+.comi-tabla-caja{overflow-x:auto; -webkit-overflow-scrolling:touch}
+.comi-tabla{
+  width:100%; border-collapse:collapse; font-size:15px;
+  background:rgba(255,255,255,.40);
+}
+.comi-tabla th{
+  font-family:var(--pixel); font-size:9.5px; letter-spacing:.16em;
+  text-transform:uppercase; text-align:left; padding:8px 10px;
+  color:var(--comi-hi); background:var(--comi-tinta); white-space:nowrap;
+}
+.comi-tabla td{
+  padding:8px 10px; border-bottom:1px solid var(--comi-filete); vertical-align:top;
+}
+.comi-tabla tr:last-child td{border-bottom:0}
+.comi-tabla .qn{font-family:var(--pixel); font-size:13px; color:var(--comi-tinta)}
+.comi-tabla .hr{font-family:var(--pixel); font-size:12.5px; white-space:nowrap}
+/* dentro / fuera, con la palabra ESCRITA: el color no es el dato */
+.comi-tabla .si,.comi-tabla .no{
+  font-family:var(--pixel); font-size:10px; letter-spacing:.14em;
+  text-transform:uppercase; padding:2px 8px; white-space:nowrap;
+  border:1px solid var(--comi-tinta);
+}
+.comi-tabla .si{background:var(--comi-tinta); color:var(--comi-hi)}
+.comi-tabla .no{background:transparent; color:var(--comi-tinta); opacity:.8}
+
+.comi-nota{
+  margin:18px auto 0; max-width:78ch; text-align:center; font-size:14.5px;
+  color:var(--comi-tinta); opacity:.88; padding-top:12px;
+  border-top:1px solid var(--comi-filete);
+}
+.comi-firma{
+  margin:10px 0 0; text-align:center; font-family:var(--pixel); font-size:10.5px;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--comi-tinta);
+}
+
+/* las piezas narrativas del caso, a dos columnas como el manila */
+.comi-cuerpo{
+  column-count:2; column-gap:34px; column-rule:1px solid var(--comi-filete);
+  padding-top:14px; margin-top:16px; border-top:1px solid var(--comi-filete);
+}
+.comi-sec .pieza{margin:0 0 22px; padding:0 0 16px; position:relative}
+.comi-sec .pieza:last-child{margin-bottom:0; padding-bottom:0}
+.comi-sec .pieza:last-child::after{content:none}
+.comi-sec .pieza::after{
+  content:''; position:absolute; left:0; right:0; bottom:0;
+  border-top:1px dashed var(--comi-filete);
+}
+.comi-sec .kicker{color:var(--comi-tinta); border-bottom-color:var(--comi-filete)}
+.comi-sec .pieza h2{color:var(--comi-tinta)}
+.comi-sec blockquote{
+  border-left-color:var(--comi-tinta); background:rgba(17,34,75,.07);
+}
+.comi-sec figcaption{border-left-color:var(--comi-filete)}
+.comi-sec hr{border-top-color:var(--comi-filete)}
+.comi-sec .pie{color:var(--comi-tinta)}
+/* LAS PRUEBAS. `.galeria` es de DOS columnas fijas y una prueba sola se quedaba
+   arrinconada a la izquierda con medio pliego en blanco al lado. Con una, ocupa el
+   centro y se ve; con dos o mas, se reparten como en el resto del Diario. */
+.comi-sec .galeria{grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); justify-items:center}
+.comi-sec .galeria figure{max-width:760px}
+.comi-sec .galeria img{width:100%}
 
 /* ── EL DOMINICAL ─────────────────────────────────────────
    El séptimo papel (encargo del usuario, 2026-08-30): el repaso de la semana, y
@@ -1323,6 +1531,12 @@ body.con-visor{overflow:hidden}
   .sucesos-sec{margin:24px -18px 0; padding:20px 18px 22px}
   .imperial{margin:24px -18px 0; padding:22px 18px 22px}
   .diva-sec{margin:24px -18px 0; padding:22px 18px 22px}
+  .comi-sec{margin:24px -18px 0; padding:22px 18px 22px}
+  .comi-tit{font-size:25px}
+  .comi-cuerpo{column-count:1}
+  .comi-agentes{grid-template-columns:1fr}
+  .comi-caso{flex-wrap:wrap; gap:14px}
+  .comi-nombre{font-size:22px}
   .domi-sec{margin:24px -18px 0; padding:22px 18px 22px}
   .domi-cuerpo{grid-template-columns:1fr; gap:20px}
   .domi-crono{border-right:0; border-bottom:1px solid var(--domi-filete);
@@ -1378,11 +1592,17 @@ body.con-visor{overflow:hidden}
   .sumario,.intro{font-size:16px}
   .tira{flex-direction:column; gap:3px; text-align:center}
 
-  .anexo,.corazon-sec,.sucesos-sec,.imperial,.esc-sec,.diva-sec,.domi-sec{
+  .anexo,.corazon-sec,.sucesos-sec,.imperial,.esc-sec,.diva-sec,.domi-sec,.comi-sec{
     margin-left:-12px; margin-right:-12px; padding-left:12px; padding-right:12px;
   }
   .imp-tit{font-size:clamp(22px, 7.6vw, 30px)}
   .diva-tit{font-size:clamp(21px, 7.2vw, 28px)}
+  .comi-tit{font-size:clamp(21px, 7.2vw, 28px)}
+  .comi-placa{flex:0 0 58px; width:58px; height:58px}
+  .comi-estado{transform:none; align-self:flex-start}
+  .comi-crono li{grid-template-columns:52px 1fr; gap:9px}
+  .comi-tabla{font-size:14px}
+  .comi-tabla th,.comi-tabla td{padding:7px 8px}
   .domi-tit{font-size:clamp(26px, 9vw, 34px)}
   .domi-cifras{font-size:14px}
   .diva-cabf{flex-direction:column; gap:6px}
@@ -1448,6 +1668,11 @@ body.con-visor{overflow:hidden}
 }
 
 @media print{
+  /* LA COMISARIA: el azul medio y la trama de estrellas se comen el toner, y la
+     cabecera de la tabla en navy sale como una banda negra solida. */
+  .comi-sec{background:#fff; background-image:none; border-color:#000}
+  .comi-tit,.comi-nombre,.comi-tabla .qn{color:#000}
+  .comi-tabla th{background:#000; color:#fff}
   body{background:#fff; padding:0}
   .hoja{box-shadow:none; max-width:none}
   .pasar,.pie-hoja,.esc-tabs,.visor{display:none}
