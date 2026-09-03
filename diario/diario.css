@@ -670,6 +670,17 @@ figcaption .rev{
   border-bottom:1px solid var(--comi-filete); padding-bottom:4px;
 }
 
+/* LA VENTANA, IMPRESA ENCIMA DE LA TABLA Y NO NEGOCIABLE. 🔴 El n12 publico la tabla sin
+   ella: se calculo en el INSTANTE de la denuncia y se rotulo «No podia estar», y ocho de los
+   nueve asi rotulados SI habian estado dentro mientras pudo ocurrir. La ventana escrita es lo
+   que impide leer la tabla como una lista de sospechosos. `build_diario.py` la EXIGE. */
+.comi-ventana{
+  margin:0 0 10px; padding:9px 13px; font-size:14.5px;
+  color:var(--comi-tinta); background:rgba(255,255,255,.40);
+  border-left:4px solid var(--comi-tinta);
+}
+.comi-ventana b{font-family:var(--pixel); font-size:13px; letter-spacing:.03em}
+
 /* LOS AGENTES: quien es y QUIEN LO AVALA, que es el dato que hace de esto un cuerpo
    y no una lista de nombres. La estrellita de cada ficha es la misma placa reducida. */
 .comi-agentes{
