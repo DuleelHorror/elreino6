@@ -1693,3 +1693,89 @@ body.con-visor{overflow:hidden}
   .imperial{background:#fff; color:#000; border-color:#000}
   .imp-tit,.imp-cita,.imp-lectura,.imp-ctx{color:#000}
 }
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   📄 EL FACSÍMIL — un documento reproducido dentro del número (nº 16, 2026-09-07)
+   ------------------------------------------------------------------------------
+   Nace de la carta que recibió la Encargada del Orden. La idea es que se lea como
+   lo que es —un papel que llegó a la redacción y se reproduce— y no como una cita
+   más del cuerpo. Por eso ocupa las DOS columnas, va ligeramente torcido y lleva
+   su sello de archivo encima.
+
+   🔴 NADA DE ESTO DEPENDE DEL RATÓN (LECCIÓN 227). Es todo estático: lo que se ve
+      en el escritorio se ve igual en el teléfono, que es donde se lee el Heraldo.
+   🔴 Y ni una imagen: el papel, la mancha y el sello son degradados. Así el texto
+      sigue siendo texto (se puede leer, seleccionar y ampliar) y no pesa nada.
+   ══════════════════════════════════════════════════════════════════════════════ */
+.carta{
+  column-span:all;                 /* rompe las dos columnas: es un documento, no un párrafo */
+  position:relative;
+  margin:20px 0 22px;
+  padding:26px 26px 22px;
+  background:
+    radial-gradient(circle at 78% 22%, rgba(150,110,60,.16) 0 14%, transparent 42%),
+    radial-gradient(circle at 12% 86%, rgba(120,95,50,.13) 0 10%, transparent 38%),
+    linear-gradient(160deg, #f6efdd 0%, #efe4cc 55%, #e6d9bd 100%);
+  border:1px solid #cbb894;
+  border-radius:2px 7px 3px 9px;
+  box-shadow:0 2px 0 rgba(0,0,0,.05), 0 10px 22px rgba(40,30,10,.18);
+  transform:rotate(-.7deg);
+  font-family:"Courier New", Courier, monospace;
+  font-size:16.5px; line-height:1.75; color:#2f2718;
+  break-inside:avoid;
+}
+/* el doblez del papel: una línea clara en horizontal, como de haber ido en un sobre */
+.carta::before{
+  content:""; position:absolute; left:0; right:0; top:46%; height:2px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,.75) 12%,
+             rgba(255,255,255,.75) 88%, transparent);
+  pointer-events:none;
+}
+.carta p{margin:0 0 13px; text-align:left; hyphens:none}
+.carta p:last-child{margin-bottom:0}
+.carta .carta-firma{margin-top:18px; font-style:italic; text-align:right; color:#4a3d25}
+
+/* el sello de archivo, torcido y en tinta roja, como puesto con tampón */
+.carta-sello{
+  position:absolute; top:-14px; right:16px; transform:rotate(9deg);
+  padding:5px 11px; border:2px solid #9c2b22; border-radius:2px;
+  color:#9c2b22; background:rgba(255,252,245,.86);
+  font-family:Georgia,"Times New Roman",serif; font-weight:700;
+  font-size:11.5px; letter-spacing:1.6px; line-height:1.25; text-align:center;
+  opacity:.88;
+}
+
+/* 🔤 LAS PALABRAS RECORTADAS. Cada una con su tipo, su fondo y su giro: si fueran
+   todas iguales parecería una negrita, y lo que tiene que parecer es que alguien
+   las recortó de sitios distintos y las pegó. */
+.rec{
+  display:inline-block; padding:1px 5px 2px; margin:0 1px;
+  background:#fbf7ee; border:1px solid rgba(60,45,20,.28);
+  box-shadow:1px 1px 0 rgba(0,0,0,.10);
+  font-weight:700; letter-spacing:.2px;
+}
+.rec.r1{font-family:Georgia,serif;              transform:rotate(-2.4deg); background:#fdfaf2}
+.rec.r2{font-family:"Arial Black",Arial,sans-serif; transform:rotate(1.9deg);  background:#e9e2d2; font-size:.94em}
+.rec.r3{font-family:"Times New Roman",serif;    transform:rotate(-1.2deg); background:#f4eede; font-style:italic}
+.rec.r4{font-family:Impact,Haettenschweiler,sans-serif; transform:rotate(2.6deg); background:#2f2718; color:#f6efdd;
+        border-color:#2f2718; letter-spacing:1px}
+.rec.r5{font-family:Verdana,Geneva,sans-serif;  transform:rotate(-3deg);   background:#efe6d0; font-size:.92em}
+.rec.r6{font-family:Georgia,serif;              transform:rotate(1.4deg);  background:#fffdf7; text-decoration:underline}
+
+/* la transcripción: limpia, compuesta por la casa, para que se pueda leer de verdad */
+.transcripcion{
+  column-span:all; margin:0 0 18px; padding:14px 18px;
+  border-left:3px solid var(--filete); background:rgba(0,0,0,.02);
+}
+.transcripcion p{margin:0 0 9px; font-style:italic}
+.transcripcion p:last-child{margin-bottom:0}
+.transcripcion .tr-nota{
+  font-style:normal; font-size:13px; color:var(--tinta-2);
+  border-top:1px solid var(--filete); padding-top:8px; margin-top:11px;
+}
+
+@media (max-width:560px){
+  .carta{padding:20px 16px 18px; font-size:15px; transform:rotate(-.4deg)}
+  .carta-sello{right:8px; font-size:10.5px; letter-spacing:1.1px}
+  .rec{padding:1px 3px 2px}
+}
