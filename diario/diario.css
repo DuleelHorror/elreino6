@@ -1737,7 +1737,7 @@ body.con-visor{overflow:hidden}
 
 /* el sello de archivo, torcido y en tinta roja, como puesto con tampón */
 .carta-sello{
-  position:absolute; top:-14px; right:16px; transform:rotate(9deg);
+  position:absolute; top:-14px; left:18px; z-index:3; transform:rotate(-7deg);
   padding:5px 11px; border:2px solid #9c2b22; border-radius:2px;
   color:#9c2b22; background:rgba(255,252,245,.86);
   font-family:Georgia,"Times New Roman",serif; font-weight:700;
@@ -1754,6 +1754,9 @@ body.con-visor{overflow:hidden}
   box-shadow:1px 1px 0 rgba(0,0,0,.10);
   font-weight:700; letter-spacing:.2px;
 }
+/* 🔗 un recorte y el signo que le sigue NO se separan: un `inline-block` abre corte
+   por los dos lados, y la coma de «eterno,» se iba sola al principio del renglon. */
+.nb{white-space:nowrap}
 .rec.r1{font-family:Georgia,serif;              transform:rotate(-2.4deg); background:#fdfaf2}
 .rec.r2{font-family:"Arial Black",Arial,sans-serif; transform:rotate(1.9deg);  background:#e9e2d2; font-size:.94em}
 .rec.r3{font-family:"Times New Roman",serif;    transform:rotate(-1.2deg); background:#f4eede; font-style:italic}
@@ -1776,6 +1779,52 @@ body.con-visor{overflow:hidden}
 
 @media (max-width:560px){
   .carta{padding:20px 16px 18px; font-size:15px; transform:rotate(-.4deg)}
-  .carta-sello{right:8px; font-size:10.5px; letter-spacing:1.1px}
+  .carta-sello{left:12px; right:auto; font-size:10.5px; letter-spacing:1.1px}
   .rec{padding:1px 3px 2px}
+}
+
+/* 📎 LA FOTO PEGADA A LA CARTA (2026-09-07, segunda vuelta)
+   ------------------------------------------------------------------------------
+   La primera version publicaba la fotografia aparte, debajo, como una foto mas del
+   numero. Y no es una foto mas: **vino DENTRO del sobre**. Va pegada al papel, con
+   su celo y torcida al reves que la carta, que es como llega una foto en una nota
+   de estas.
+   🔑 Es un `<figure>` a proposito: asi el visor de `diario.js` la reconoce y se
+      puede ampliar de un toque. Lo unico que se le quita es el gris del Archivo
+      Municipal -- esta foto la manda el remitente, no sale del archivo, y en gris
+      no se lee la chapa, que es justo lo que hay que leer. */
+.carta-foto{
+  float:right; width:196px; margin:2px 0 12px 20px;
+  padding:9px 9px 32px; background:#fdfbf5;
+  border:1px solid rgba(60,45,20,.22);
+  box-shadow:0 7px 18px rgba(40,30,10,.30);
+  transform:rotate(2.2deg); position:relative; z-index:2;
+}
+.carta-foto img{
+  display:block; width:100%; height:auto;
+  filter:none;                     /* 🔴 sin el gris del Archivo: mandan leer la chapa */
+  image-rendering:pixelated;       /* es una captura pequena: que no se emborrone al ampliar */
+  border:1px solid rgba(0,0,0,.18);
+}
+@media (hover:none){ .carta-foto img{filter:none} }
+.carta-foto figcaption{
+  position:absolute; left:9px; right:9px; bottom:8px;
+  font-family:"Segoe Script","Bradley Hand","Comic Sans MS",cursive;
+  font-size:12.5px; line-height:1.2; color:#3a2f1c; text-align:center;
+}
+/* el trozo de celo de arriba */
+.carta-foto::before{
+  content:""; position:absolute; top:-12px; left:50%;
+  transform:translateX(-50%) rotate(-3.5deg);
+  width:78px; height:23px;
+  background:linear-gradient(180deg, rgba(255,255,245,.78), rgba(228,222,196,.52));
+  border-left:1px dashed rgba(0,0,0,.10); border-right:1px dashed rgba(0,0,0,.10);
+  box-shadow:0 1px 3px rgba(0,0,0,.14);
+}
+
+@media (max-width:560px){
+  /* en el movil no se hace la foto pequena y el texto en un canal de tres palabras:
+     va centrada y entera, encima del texto. */
+  .carta-foto{float:none; width:auto; max-width:186px; margin:26px auto 16px;
+              transform:rotate(1.6deg)}
 }
