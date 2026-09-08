@@ -164,6 +164,27 @@ hr{border:0; border-top:1px solid var(--filete); margin:10px 0}
 /* ── EL CUERPO, A COLUMNAS ────────────────────────────────────────────── */
 .cuerpo{column-count:2; column-gap:34px; column-rule:1px solid var(--filete)}
 .pieza{break-inside:avoid; margin:0 0 26px}
+
+/* 📰 LA PIEZA A TODO LO ANCHO (`ancho: true` en el .yml) ─────────────────
+   Para la portada que reproduce un DOCUMENTO. El facsimil ya rompia las dos
+   columnas el solo (`.carta{column-span:all}`), y como `.pieza` lleva
+   `break-inside:avoid`, todo lo que iba ANTES —el titular y la entradilla— se
+   quedaba apretado en la columna izquierda con la derecha en blanco: media
+   portada vacia. Lo canto el usuario en el n17.
+   🔑 La pieza abarca las dos columnas Y SE MONTA LAS SUYAS DENTRO, que es como
+   se compone una portada: titular cruzando, texto a dos columnas y el documento
+   partiendo la pagina. El titular y el antetitulo cruzan; el facsimil y la
+   transcripcion siguen cruzando, ahora dentro de la pieza. */
+.cuerpo > article.ancho{
+  column-span:all;
+  column-count:2; column-gap:34px; column-rule:1px solid var(--filete);
+}
+.cuerpo > article.ancho > .kicker,
+.cuerpo > article.ancho > h2{column-span:all}
+.cuerpo > article.ancho > h2{font-size:29px}
+/* la linea que PRESENTA un documento (el «Transcripcion de esta Oficina») cruza tambien:
+   partida en dos columnas se lee como si fuera texto corrido y no lo es. */
+.cuerpo > article.ancho > .ancho-todo{column-span:all; margin:16px 0 0}
 .pieza:last-child{margin-bottom:0}
 
 .kicker{
@@ -1537,6 +1558,7 @@ body.con-visor{overflow:hidden}
   body{padding:14px 8px 40px; font-size:16px}
   .hoja{padding:20px 18px 22px}
   .cuerpo{column-count:1}
+  .cuerpo > article.ancho{column-count:1}
   .anexo{margin:24px -18px 0; padding:20px 18px 22px}
   .corazon-sec{margin:24px -18px 0; padding:20px 18px 22px}
   .sucesos-sec{margin:24px -18px 0; padding:20px 18px 22px}
